@@ -1,6 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/visualstudio,visualstudiocode,clion,jetbrains,c++,cmake
 # Edit at https://www.toptal.com/developers/gitignore?templates=visualstudio,visualstudiocode,clion,jetbrains,c++,cmake
 
+### CMakeSettings
+
+CMakeSettings.json
+
 ### C++ ###
 # Prerequisites
 *.d
