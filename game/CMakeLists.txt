@@ -14,4 +14,4 @@ target_include_directories(ballistic-project PUBLIC
 
 target_sources(ballistic-project PRIVATE
   main.cpp
-)
+ "Camera.h" "EventManager.h")
