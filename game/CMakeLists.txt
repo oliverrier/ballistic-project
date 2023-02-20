@@ -7,6 +7,7 @@ add_executable(ballistic-project)
 target_link_libraries(ballistic-project PUBLIC
     project_options
     ballistic-project::engine
+    ballistic-project::tools
 )
 target_include_directories(ballistic-project PUBLIC
  $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../>
