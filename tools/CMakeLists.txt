@@ -11,8 +11,7 @@ target_include_directories(tools PUBLIC
 )
 
 target_sources(tools PRIVATE
-  "MathUtils.h"
-  "MathUtils.cpp"
+  "DesignPatterns.cpp"
   "DesignPatterns/Composite.h"
   "DesignPatterns/Singleton.h"
 )

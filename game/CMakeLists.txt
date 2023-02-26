@@ -15,4 +15,21 @@ target_include_directories(ballistic-project PUBLIC
 
 target_sources(ballistic-project PRIVATE
   main.cpp
+ "scenes/StartScene.h"
+ "scenes/StartScene.cpp"
+ "scenes/SceneEnum.h"
+ "GameObjects/UI/Button.h"
+ "GameObjects/UI/Button.cpp"
+ "Components/GraphicsComponents/GCVoid.cpp"
+ "Components/GraphicsComponents/GCVoid.h"
+ "Components/GraphicsComponents/UI/GCButton.cpp"
+ "Components/GraphicsComponents/UI/GCButton.h"
+ "Components/InputComponents/ICVoid.cpp"
+ "Components/InputComponents/ICVoid.h"
+ "Components/InputComponents/UI/ICButton.cpp"
+ "Components/InputComponents/UI/ICButton.h"
+ "Components/PhysicsComponents/PCVoid.cpp"
+ "Components/PhysicsComponents/PCVoid.h"
+ "Components/PhysicsComponents/UI/PCButton.cpp"
+ "Components/PhysicsComponents/UI/PCButton.h"
 )
