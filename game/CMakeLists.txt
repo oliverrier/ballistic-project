@@ -32,4 +32,6 @@ target_sources(ballistic-project PRIVATE
  "Components/PhysicsComponents/PCVoid.h"
  "Components/PhysicsComponents/UI/PCButton.cpp"
  "Components/PhysicsComponents/UI/PCButton.h"
+ "Camera.h"
+ "EventManager.h"
 )

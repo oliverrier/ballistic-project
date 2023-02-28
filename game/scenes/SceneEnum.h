@@ -1,5 +1,6 @@
 #pragma once
 
 enum ScenesEnum {
-	START_SCENE
+	START_SCENE,
+	PHYSICS_SCENE
 };

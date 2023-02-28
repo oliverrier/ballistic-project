@@ -36,10 +36,11 @@ protected:
     std::vector<IGameObject*> m_gameObjects;
 };
 
-#endif // SCENE_H
 
 template<typename ...Args>
 inline void IScene::addGameObjects(Args ...gameObjects)
 {
     (m_gameObjects.push_back(gameObjects), ...);
 }
+
+#endif // SCENE_H

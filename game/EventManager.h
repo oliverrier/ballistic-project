@@ -1,3 +1,5 @@
+#ifndef EVENTMANAGER_H
+#define EVENTMANAGER_H
 
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
@@ -206,3 +208,4 @@ private:
     std::shared_ptr<sf::Window> m_window;
     EventMap    m_event_map;
 };
+#endif // !EVENTMANAGER_H

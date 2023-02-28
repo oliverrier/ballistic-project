@@ -15,7 +15,6 @@ public:
 	void render() override;
 
 	void initButtons();
-	std::vector<std::vector<Button*>> m_buttons;
 
 };
 
