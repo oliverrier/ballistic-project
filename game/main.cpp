@@ -1,6 +1,3 @@
-#include <engine/test.h>
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
 #include <iostream>
 #include <chrono>
 #include <engine/Game/Game.h>
