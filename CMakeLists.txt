@@ -17,5 +17,8 @@ CPMAddPackage("gh:SFML/SFML#2.6.x")
 add_library(project_options INTERFACE)
 target_compile_features(project_options INTERFACE cxx_std_20)
 
+file(COPY ${CMAKE_CURRENT_LIST_DIR}/extlibs/freetype.dll DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+
+add_subdirectory(tools)
 add_subdirectory(engine)
 add_subdirectory(game)
