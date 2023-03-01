@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CAMERA_H
+#define CAMERA_H
 
 #include "engine/utils/Math/Vector2.h"
 #include <SFML/Graphics.hpp>
@@ -85,3 +86,5 @@ private:
 	float m_zoom;
 	float m_zoom_step;
 };
+
+#endif // !CAMERA_H
