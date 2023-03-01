@@ -7,6 +7,7 @@ target_link_libraries(engine PUBLIC
     project_options
     ballistic-project::tools
     sfml-graphics sfml-audio sfml-system
+    ballistic-project::physicsEngine
 )
 target_include_directories(engine PUBLIC
  $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../>
@@ -15,8 +16,6 @@ target_include_directories(engine PUBLIC
 file(COPY ${CMAKE_CURRENT_LIST_DIR}/Assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
 target_sources(engine PRIVATE
-  "test.cpp"
-  "test.h"
  "Scene/Scene.cpp"
  "Scene/Scene.h"
  "GameObject/GameObject.h"
@@ -27,18 +26,6 @@ target_sources(engine PRIVATE
  "Game/Game.cpp"
  "GameObject/GameObject.h"
  "Ui/UiFactory.h"
- "core/Collider/CircleCollider.h"
- "core/Collider/Collider.h"
- "core/Collider/PolygonCollider.h"
- "core/Collider/RectangleCollider.h"
- "core/Entity/Entity.h"
- "core/Entity/CircleEntity.h"
- "core/Entity/EntityFactory.h"
- "core/Entity/SquareEntity.h"
- "core/CollisionResolver.h"
- "core/RigidBody.h"
- "core/PhysicsWorld.h"
- "core/Transform.h"
  "utils/Factory/Factory.h"
  "utils/Math/Common.h"
  "utils/Math/Quat2D.h"
@@ -47,4 +34,7 @@ target_sources(engine PRIVATE
  "utils/RTTI/RTTI.h"
  "utils/Typelist/Typelist.h"
  "Ui/HUD/HudElement.h"   
- "Ui/HUD/HudArrow.h")
+ "Ui/HUD/HudArrow.h" 
+ "Entity/RectEntity.h" 
+ "Entity/Entity.h" 
+ "Entity/CircleEntity.h")
