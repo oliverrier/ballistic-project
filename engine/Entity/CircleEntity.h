@@ -1,18 +1,19 @@
 #include "Entity.h"
+#include "physicsEngine/collision/CircleShape.h"
 
 class CircleEntity: public Entity
 {
 	friend Factory;
 private:
-	CircleEntity(float radius, Vec2 position, BodyType type, World* world): radius(radius)
+	CircleEntity(float radius, Vec2 position, BodyType type): radius(radius)
 	{
-		m_world = world;
 
 		BodyDef bd;
 		bd.type = type;
 		bd.position.Set(position.x, position.y);
 
-		Body* body = m_world->CreateBody(&bd);
+		auto world = World::GetWorld();
+		Body* body = world->CreateBody(&bd);
 
 		CircleShape shape;
 		shape.m_radius = 0.5f;

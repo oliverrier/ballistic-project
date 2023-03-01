@@ -8,10 +8,10 @@
 class Entity
 {
 public:
-	Entity() : rb(nullptr), m_world(nullptr)
+	Entity() : rb(nullptr)
 	{
 	}
-	Entity(Body* body, World* world) : rb(body), m_world(world)
+	Entity(Body* body) : rb(body)
 	{
 	}
 
@@ -21,7 +21,6 @@ public:
 	}
 
 	Body* rb;
-	World* m_world;
 private:
 	void RegisterEntity()
 	{

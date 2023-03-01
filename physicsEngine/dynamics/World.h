@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <vector>
 
 #include "ContactManager.h"
@@ -18,13 +19,20 @@ class Fixture;
 /// management facilities.
 class World
 {
-public:
+private:
 	/// Construct a world object.
 	/// @param gravity the world gravity vector.
 	World(const Vec2& gravity);
-
+public:
 	/// Destruct the world. All physics entities are destroyed and all heap memory is released.
 	~World();
+
+	// get a single instance of world
+	static std::shared_ptr<World> GetWorld()
+	{
+		static std::shared_ptr<World> instance{ new World({0, 10.f})};
+		return instance;
+	}
 
 	/// Register a destruction listener. The listener is owned by you and must
 	/// remain in scope.
