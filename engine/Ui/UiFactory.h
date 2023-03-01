@@ -7,9 +7,10 @@
 #include "engine/Ui/HUD/HudArrow.h"
 #include "engine/utils/Factory/Factory.h"
 #include "engine/utils/Typelist/Typelist.h"
+#include "HUD/HudEntityFixed.h"
 
 // Add Available Entities for the factory
-using UiTypes = typelist < RectangleButton, HudElement<std::string> ,HudElement<float>, HudElement<int>, HudArrow>;
+using UiTypes = typelist < RectangleButton, HudElement<std::string> ,HudElement<float>, HudElement<int>, HudArrow, HudEntityFixed<float>>;
 
 using UiFactory = Factory<UiTypes, std::shared_ptr>;
 
