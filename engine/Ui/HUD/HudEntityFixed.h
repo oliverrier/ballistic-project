@@ -4,13 +4,12 @@
 #include <engine/utils/Math/Vector2.h>
 #include <iostream>
 #include <string>
-#include "../../core/Entity/Entity.h"
 
 template<typename T>
 struct HudEntityFixed : public sf::RectangleShape {
 
 public:
-    HudEntityFixed(const FVector2& relativePosition, const FVector2& size, const sf::Color& color, std::shared_ptr<RigidBody> entity_rb) : m_entity_rb(entity_rb)
+    HudEntityFixed(const FVector2& relativePosition, const FVector2& size, const sf::Color& color) //: m_entity_rb(entity_rb)
     {
         m_initialPosition = relativePosition;
         m_relativePosition = relativePosition;
@@ -33,7 +32,7 @@ public:
     }
 
     void correctPosition() {
-        sf::RectangleShape::setPosition(m_entity_rb->position.x + m_relativePosition.x, m_entity_rb->position.y - m_relativePosition.y);
+        //sf::RectangleShape::setPosition(m_entity_rb->position.x + m_relativePosition.x, m_entity_rb->position.y - m_relativePosition.y);
 
     }
 
@@ -48,7 +47,7 @@ public:
 
 public:
     static std::vector<HudEntityFixed<T>> hudVector;
-    std::shared_ptr<RigidBody> m_entity_rb;
+    //std::shared_ptr<RigidBody> m_entity_rb;
 
 
 private:
