@@ -37,7 +37,7 @@ public:
             m_sprite.setScale(size.x / m_texture.getSize().x, size.y / m_texture.getSize().y);
         }
 
-        hudVector.push_back(*this);
+        //hudVector.push_back(*this);
     }
 
     ~HudElement() = default;
@@ -74,7 +74,7 @@ public:
     }
 
 public:
-    static std::vector<HudElement<T>> hudVector;
+    //static std::vector<HudElement<T>> hudVector;
 
 private:
 
@@ -89,8 +89,8 @@ private:
 };
 
 //vector initialization
-template<typename T>
-std::vector<HudElement<T>> HudElement<T>::hudVector;
+//template<typename T>
+//std::vector<HudElement<T>> HudElement<T>::hudVector;
 
 
 
@@ -127,7 +127,7 @@ public:
             m_sprite.setScale(size.x / m_texture.getSize().x, size.y / m_texture.getSize().y);
         }
 
-        hudVector.push_back(*this);
+        //hudVector.push_back(*this);
     }
 
     ~HudElement() = default;
@@ -167,7 +167,7 @@ public:
     }
 
 public:
-    static std::vector <HudElement<std::string>> hudVector;
+    //static std::vector <HudElement<std::string>> hudVector;
 
 private:
 
@@ -182,4 +182,4 @@ private:
 };
 
 //vector initialization
-std::vector<HudElement<std::string>> HudElement<std::string>::hudVector;
+//std::vector<HudElement<std::string>> HudElement<std::string>::hudVector;

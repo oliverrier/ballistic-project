@@ -1,22 +1,32 @@
-#ifndef STARTSCENE_H
-#define STARTSCENE_H
+#ifndef GAMESCENE_H
+#define GAMESCENE_H
 
 #include "engine/Scene/Scene.h"
 #include "game/GameObjects/UI/Button.h"
 #include "engine/Ui/Buttons/RectangleButton.h"
+#include "game/Camera.h"
+#include "game/EventManager.h"
 
-class StartScene : public IScene
+
+class GameScene : public IScene
 {
 public:
-	StartScene();
-	~StartScene(); 
+	GameScene();
+	~GameScene() = default;
 
 	void processInput(sf::Event& inputEvent) override;
 	void update(const float& deltaTime) override;
 	void render() override;
+
 	void initButtons();
+	void initObjects();
+	void registerEvents();
 
 private:
+
+	//PhysicsWorld* m_physicsWorld;
+	EventManager* m_eventManager;
+	Camera* m_camera;
 
 	std::shared_ptr<RectangleButton> startButton;
 	std::shared_ptr<RectangleButton> exitButton;
@@ -25,4 +35,4 @@ private:
 
 };
 
-#endif // !STARTSCENE_H
+#endif // !GAMESCENE_H

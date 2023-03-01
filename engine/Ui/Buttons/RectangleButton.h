@@ -2,6 +2,7 @@
 #include <functional>
 #include <vector>
 #include <engine/utils/Math/Vector2.h>
+#include <iostream>
 
 #pragma once
 
@@ -26,7 +27,7 @@ public:
         m_text.setCharacterSize(24);
         m_text.setFillColor(sf::Color::White);
 
-        rectButtonVect.push_back(this);
+        //rectButtonVect.push_back(this);
     }
 
     ~RectangleButton() = default;
@@ -64,7 +65,7 @@ public:
     }
 
 public:
-    static std::vector<RectangleButton*> rectButtonVect;
+    //static std::vector<RectangleButton> rectButtonVect;
 
 private:
     std::function<void()> m_onClick;
@@ -76,4 +77,4 @@ private:
 
 };
 
-std::vector<RectangleButton*> RectangleButton::rectButtonVect;
+//std::vector<RectangleButton*> RectangleButton::rectButtonVect;
