@@ -136,7 +136,7 @@ private:
 class EventManager
 {
 public:
-    EventManager(std::shared_ptr<sf::Window> window, bool use_builtin_helpers = true) :
+    EventManager(std::shared_ptr<sf::RenderWindow> window, bool use_builtin_helpers = true) :
         m_window(window),
         m_event_map(use_builtin_helpers)
     {
@@ -188,7 +188,7 @@ public:
         m_event_map.addMouseReleasedCallback(button, callback);
     }
 
-    std::shared_ptr<sf::Window>& getWindow()
+    std::shared_ptr<sf::RenderWindow>& getWindow()
     {
         return m_window;
     }
@@ -205,7 +205,7 @@ public:
     }
 
 private:
-    std::shared_ptr<sf::Window> m_window;
+    std::shared_ptr<sf::RenderWindow> m_window;
     EventMap    m_event_map;
 };
 #endif // !EVENTMANAGER_H

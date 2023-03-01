@@ -12,6 +12,8 @@ target_include_directories(engine PUBLIC
  $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../>
 )
 
+file(COPY ${CMAKE_CURRENT_LIST_DIR}/Assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+
 target_sources(engine PRIVATE
   "test.cpp"
   "test.h"
@@ -43,4 +45,6 @@ target_sources(engine PRIVATE
  "utils/Math/Vector.h"
  "utils/Math/Vector2.h"
  "utils/RTTI/RTTI.h"
- "utils/Typelist/Typelist.h")
+ "utils/Typelist/Typelist.h"
+ "Ui/HUD/HudElement.h"   
+ "Ui/HUD/HudArrow.h")

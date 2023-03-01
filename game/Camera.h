@@ -71,6 +71,10 @@ public:
 		m_last_position = position;
 	}
 
+	FVector2 getPosition() {
+		return m_position;
+	}
+
 private:
 	std::shared_ptr<sf::RenderWindow> m_window;
 

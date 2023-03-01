@@ -32,7 +32,7 @@ public:
     void clearGameObjects();
 
 protected:
-    sf::RenderWindow& m_window;
+    std::shared_ptr<sf::RenderWindow> m_window;
     std::vector<IGameObject*> m_gameObjects;
 };
 

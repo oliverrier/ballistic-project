@@ -3,6 +3,7 @@
 
 #include "../RigidBody.h"
 #include "../../utils/Typelist/Typelist.h"
+#include "engine/core/PhysicsWorld.h"
 
 class Entity
 {

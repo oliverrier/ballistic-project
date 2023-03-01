@@ -1,33 +1,16 @@
-#include <SFML/Graphics.hpp>
-#include <memory>
-#include <vector>
-
 #pragma once
 
-template<typename T>
-struct UIFactory
-{
-public:
+#include <memory>
 
-    // Create a new UI element
-    template<typename... Args>
-    std::shared_ptr<T> create(Args&&... args) {
-        std::shared_ptr<T> newElement = std::make_unique<T>(std::forward<Args>(args)...);
-        m_elements.push_back(std::move(newElement));
+#include "engine/Ui/Buttons/RectangleButton.h"
+#include "engine/Ui/HUD/HudElement.h"
+#include "engine/Ui/HUD/HudArrow.h"
+#include "engine/utils/Factory/Factory.h"
+#include "engine/utils/Typelist/Typelist.h"
+#include "HUD/HudEntityFixed.h"
 
-        if(!m_elements.empty()){
-            return m_elements.back();
-        }
-        else {
-            return nullptr;
-        }
+// Add Available Entities for the factory
+using UiTypes = typelist < RectangleButton, HudElement<std::string> ,HudElement<float>, HudElement<int>, HudArrow, HudEntityFixed<float>>;
 
-    };
+using UiFactory = Factory<UiTypes, std::shared_ptr>;
 
-    // Get a vector of created UI elements
-    std::vector<std::shared_ptr<T>>& getElements() {
-        return m_elements;
-    };
-
-    std::vector<std::shared_ptr<T>> m_elements;
-};

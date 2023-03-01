@@ -2,5 +2,5 @@
 
 enum ScenesEnum {
 	START_SCENE,
-	PHYSICS_SCENE
+	GAME_SCENE
 };
