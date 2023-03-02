@@ -20,20 +20,19 @@ constexpr int window_height = 1080;
 
 GameScene::GameScene() {
 
+	windAngle = -45.f;
+	windForce = 60.f;
+	shootingAngle = -90.f;
+
 	pannel = UiFactory::create < HudElement<std::string>>(FVector2(0.f, 780.f), FVector2(1920.f, 300.f), sf::Color(19, 48, 54, 255), "", "Assets/WoodenTexture.png");
 	hudElements.push_back(pannel);
-	moveInfo = UiFactory::create < HudElement<std::string>>(FVector2(200.f, 880.f), FVector2(500.f, 50.f), sf::Color(19, 48, 54, 255), "Q,D	Deplacements");
+	moveInfo = UiFactory::create < HudElement<std::string>>(FVector2(200.f, 980.f), FVector2(500.f, 50.f), sf::Color(19, 48, 54, 255), "Q,D	Deplacements");
 	hudElements.push_back(moveInfo);
-	aimInfo = UiFactory::create < HudElement<std::string>>(FVector2(750.f, 880.f), FVector2(500.f, 50.f), sf::Color(19, 48, 54, 255), "Z,S	Viser");
+	aimInfo = UiFactory::create < HudElement<std::string>>(FVector2(750.f, 980.f), FVector2(500.f, 50.f), sf::Color(19, 48, 54, 255), "Z,S	Viser");
 	hudElements.push_back(aimInfo);
-	shootInfo = UiFactory::create < HudElement<std::string>>(FVector2(1300.f, 880.f), FVector2(500.f, 50.f), sf::Color(19, 48, 54, 255), "Space  Tirer");
+	shootInfo = UiFactory::create < HudElement<std::string>>(FVector2(1300.f, 980.f), FVector2(500.f, 50.f), sf::Color(19, 48, 54, 255), "Space  Tirer");
 	hudElements.push_back(shootInfo);
-
-	angle1 = 0.f;
-	angle2 = 200.f;
-
-	std::shared_ptr<Bullet> mainBullet = GameObjectFactory::create<Bullet>(window_width, angle1);
-	addGameObjects(mainBullet);
+	windArrow = UiFactory::create < HudArrow>(FVector2(420.f, 200.f), FVector2(150.f, 50.f), &windAngle);
 
 	m_world = World::GetWorld();
 
@@ -62,16 +61,26 @@ void GameScene::initButtons() {
 void GameScene::processInput(sf::Event& inputEvent) {
 	IScene::processInput(inputEvent);
 
-	//if (inputEvent.key.code == sf::Keyboard::Escape)
-	//    m_window.close();
+	if (canShoot == true && inputEvent.KeyPressed && inputEvent.key.code == sf::Keyboard::Space) {
 
-	if (inputEvent.type == sf::Event::KeyPressed && inputEvent.key.code == sf::Keyboard::Z) {
+		canShoot = false;
+		std::shared_ptr<Bullet> bullet = GameObjectFactory::create<Bullet>(window_width, shootingAngle);
+		float angleToShoot = bullet->angle * PI / 180;
 
-		angle1 -= 10;
+		bullet->m_body->rb->SetFixedRotation(true);
+		bullet->m_body->rb->SetGravityScale(1.f);
+		bullet->m_body->rb->SetAngularVelocity(0.f);
+		bullet->m_body->rb->SetTransform(Vec2(100.f, 600.f), 0.f);
+		bullet->m_body->rb->SetLinearVelocity(Vec2(std::cosf(angleToShoot) * 600, std::sinf(angleToShoot) * 600));
+		addGameObjects(bullet);
 	}
-	else if (inputEvent.type == sf::Event::KeyPressed && inputEvent.key.code == sf::Keyboard::S)
+
+	if (inputEvent.key.code == sf::Keyboard::Z) {
+		shootingAngle -= 1;
+	}
+	else if (inputEvent.key.code == sf::Keyboard::S)
 	{
-		angle1 += 10;
+		shootingAngle += 1;
 	}
 
 }
@@ -90,6 +99,7 @@ void GameScene::update(const float& deltaTime) {
 		element->setPosition(element->getInitialPosition());
 	}
 
+	windArrow->setPosition(windArrow->getInitialPosition());
 
 	IScene::update(deltaTime);
 }
@@ -97,14 +107,16 @@ void GameScene::update(const float& deltaTime) {
 void GameScene::render() {
 	//m_window->draw(*m_backgroundSprite);
 	
+	//startButton->draw(*m_window, sf::RenderStates::Default);
+	//exitButton->draw(*m_window, sf::RenderStates::Default);
+	
+	IScene::render();
 
 	for (auto element : hudElements)
 	{
 		m_window->draw(*element);
 	}
 
-	//startButton->draw(*m_window, sf::RenderStates::Default);
-	//exitButton->draw(*m_window, sf::RenderStates::Default);
-	
-	IScene::render();
+	m_window->draw(*windArrow);
+
 }

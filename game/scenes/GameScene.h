@@ -10,6 +10,7 @@
 #include "engine/Ui/HUD/HudElement.h"
 #include "game/GameObjects/Ground.h"
 #include "game/GameObjects/Bullet.h"
+#include "engine/Ui/HUD/HudArrow.h"
 
 
 class GameScene : public IScene
@@ -27,13 +28,12 @@ public:
 	void registerEvents();
 
 public:
-	float angle1;
-	float angle2;
+	float shootingAngle;
 
-	std::shared_ptr<Bullet> fragment1;
-	std::shared_ptr<Bullet> fragment2;
-	std::shared_ptr<Bullet> fragment3;
-	std::shared_ptr<Bullet> fragment4;
+	float windAngle;
+	float windForce;
+
+	bool canShoot = true;
 
 private:
 
@@ -50,12 +50,14 @@ private:
 
 	std::shared_ptr<World> m_world;
 
+	// Interface elements
 	std::shared_ptr<HudElement<std::string>> pannel;
 	std::shared_ptr<HudElement<std::string>> moveInfo;
 	std::shared_ptr<HudElement<std::string>> aimInfo;
 	std::shared_ptr<HudElement<std::string>> shootInfo;
-
+	std::shared_ptr<HudArrow> windArrow;
 	std::vector < std::shared_ptr<HudElement<std::string>> > hudElements;
+
 	
 };
 
