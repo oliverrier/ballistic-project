@@ -36,10 +36,9 @@ GameScene::GameScene() {
 	hudElements.push_back(shootInfo);
 	windArrow = UiFactory::create < HudArrow>(FVector2(420.f, 200.f), FVector2(150.f, 50.f), &windAngle);
 
-	std::shared_ptr<RectEntity> characterBody = EntityFactory::create<RectEntity>(Vec2{ 20.f,  20.f }, Vec2{ 50.f, window_height - 500 }, BodyType::dynamicBody);
-	auto characterBoundingBox = new sf::RectangleShape({ characterBody->size.x, characterBody->size.y });
+	
 
-	std::shared_ptr<Character> character = GameObjectFactory::create<Character>(characterBody, characterBoundingBox);
+	std::shared_ptr<Character> character = GameObjectFactory::create<Character>(window_height);
 	addGameObjects(character);
 
 

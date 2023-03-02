@@ -1,9 +1,11 @@
 #include "game/GameObjects/Character/Character.h"
 #include "engine/utils/Math/Common.h"
 
-Character::Character(std::shared_ptr<RectEntity> body, sf::RectangleShape* boundingBox) : m_body(body), m_boundingBox(boundingBox)
+
+Character::Character(float window_height)
 {
-	
+	m_body = EntityFactory::create<RectEntity>(Vec2{ 20.f,  20.f }, Vec2{ 50.f, window_height - 500 }, BodyType::dynamicBody);
+	m_boundingBox = new sf::RectangleShape({ m_body->size.x, m_body->size.y });
 }
 
 const float Character::getHealth()

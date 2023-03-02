@@ -10,7 +10,7 @@
 class Character : public GameObject<ICCharacter, PCCharacter, GCCharacter>, Entity {
 
 public:
-	Character(std::shared_ptr<RectEntity> body, sf::RectangleShape* boundingBox);
+	Character(float window_height);
 	~Character() override = default;
 
 	void takeDamage(float damage);
