@@ -99,7 +99,7 @@ Body* World::CreateBody(const BodyDef* def)
 
 void World::DestroyBody(Body* b)
 {
-	assert(m_bodyCount > 0);
+	//assert(m_bodyCount > 0);
 	assert(IsLocked() == false);
 	if (IsLocked())
 	{

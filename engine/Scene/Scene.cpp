@@ -40,7 +40,9 @@ void IScene::update(const float& deltaTime)
 {
 	for (const auto& pGameObject : m_gameObjects)
 	{
-		pGameObject->update(deltaTime, *this);
+		if (pGameObject)
+			pGameObject->update(deltaTime, *this);
+
 	}
 }
 
@@ -51,8 +53,6 @@ void IScene::render()
 		pGameObject->render(*m_window);
 	}
 }
-
-
 
 
 IGameObject* IScene::getGameObject(const size_t index)
@@ -68,4 +68,15 @@ std::vector<std::shared_ptr<IGameObject>>& IScene::getGameObjects()
 void IScene::clearGameObjects()
 {
 	m_gameObjects.clear();
+}
+
+void IScene::RemoveGameObject(IGameObject* game_object)
+{
+	for (int i = m_gameObjects.size() - 1; i >= 0; --i)
+	{
+		if (m_gameObjects[i].get() == game_object)
+		{
+			m_gameObjects.erase(m_gameObjects.begin() + i);
+		}
+	}
 }

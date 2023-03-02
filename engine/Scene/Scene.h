@@ -29,6 +29,9 @@ public:
 
     void clearGameObjects();
 
+    void RemoveGameObject(IGameObject* game_object);
+
+
 protected:
     std::shared_ptr<sf::RenderWindow> m_window;
     std::vector<std::shared_ptr<IGameObject>> m_gameObjects;

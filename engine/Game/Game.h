@@ -4,7 +4,7 @@
 #include "tools/DesignPatterns/Singleton.h"
 #include <SFML/Graphics.hpp>
 
-class IScene;
+#include "engine/Scene/Scene.h"
 
 class Game : public Singleton<Game>
 {
@@ -16,6 +16,7 @@ public:
     void run(sf::VideoMode videoMode = sf::VideoMode(1920, 1080), std::string windowTitle = "SFML", sf::Uint32 style = sf::Style::Default);
 
     sf::RenderWindow* getWindow();
+    IScene* GetCurrentScene();
 
     template <typename... Args>
     void addScenes(Args... scenes);
@@ -40,6 +41,7 @@ private:
 
     std::vector<IScene*> m_scenes;
     IScene* m_pCurrentScene;
+
 };
 
 #endif // GAME_H
@@ -49,3 +51,4 @@ inline void Game::addScenes(Args ...scenes)
 {
     (m_scenes.push_back(scenes), ...);
 }
+

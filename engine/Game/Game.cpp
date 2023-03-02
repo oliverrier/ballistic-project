@@ -1,7 +1,5 @@
 #include "Game.h"
 #include <cassert>
-#include <memory>
-#include "../Scene/Scene.h"
 
 
 Game::~Game()
@@ -33,7 +31,10 @@ sf::RenderWindow* Game::getWindow()
     return &m_window;
 }
 
-
+IScene* Game::GetCurrentScene()
+{
+    return m_pCurrentScene;
+}
 
 void Game::setCurrentScene(const size_t index)
 {
@@ -53,8 +54,9 @@ void Game::clearScenes()
 
 // private
 Game::Game()
-    : m_window(sf::RenderWindow()), m_pCurrentScene(nullptr)
+    : m_window(sf::RenderWindow())
 {
+    Game::m_pCurrentScene = nullptr;
 }
 
 

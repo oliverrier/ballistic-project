@@ -18,5 +18,5 @@ Ground::Ground(std::vector<Vec2>& vertices, Vec2& position) {
 
     m_shape = concaveShape;
 
-	std::cout << "Ground créé" << std::endl;
+	std::cout << "Ground crÃ©Ã©" << std::endl;
 }

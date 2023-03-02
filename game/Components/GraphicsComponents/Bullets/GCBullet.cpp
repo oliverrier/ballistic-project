@@ -8,6 +8,6 @@ GCBullet::GCBullet() {
 void GCBullet::renderImplementation(IGameObject& gameObject, sf::RenderWindow& window) {
 
 	Bullet& bullet = reinterpret_cast<Bullet&>(gameObject);
-	window.draw(*bullet.m_circle);
+	window.draw(bullet.m_circle);
 
 }

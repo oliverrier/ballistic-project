@@ -11,11 +11,10 @@ void ICBullet::processInputImplementation(IGameObject& gameObject, sf::Event& in
 {
 	Bullet& bullet= reinterpret_cast<Bullet&>(gameObject);
 	GameScene& game_scene = reinterpret_cast<GameScene&>(gameObject);
-	float angleToShoot = *bullet.m_angle * PI / 180;
+	float angleToShoot = bullet.angle * PI / 180;
 
 	if (inputEvent.type == sf::Event::KeyPressed && inputEvent.key.code == sf::Keyboard::Space) {
 
-		bullet.m_destroyed = false;
 		bullet.m_body->rb->SetFixedRotation(true);
 		bullet.m_body->rb->SetGravityScale(1.f);
 		bullet.m_body->rb->SetAngularVelocity(0.f);

@@ -32,7 +32,7 @@ GameScene::GameScene() {
 	angle1 = 0.f;
 	angle2 = 200.f;
 
-	std::shared_ptr<Bullet> mainBullet = GameObjectFactory::create<Bullet>(window_width, &angle1);
+	std::shared_ptr<Bullet> mainBullet = GameObjectFactory::create<Bullet>(window_width, angle1);
 	addGameObjects(mainBullet);
 
 	m_world = World::GetWorld();
@@ -44,8 +44,6 @@ GameScene::GameScene() {
 	m_platform = GameObjectFactory::create<Ground>(vertices, Vec2(0, window_height - 200));
 	addGameObjects(m_platform);
 	
-	m_eventManager = new EventManager(m_window);
-
 	initButtons();
 }
 
