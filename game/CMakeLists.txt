@@ -37,4 +37,9 @@ target_sources(ballistic-project PRIVATE
  "Camera.h"
  "EventManager.h"
  "scenes/GameScene.h" 
- "scenes/GameScene.cpp")
+ "scenes/GameScene.cpp" 
+ "GameObjects/Bullet.h" 
+ "Components/GraphicsComponents/Bullets/GCBullet.h" 
+ "Components/GraphicsComponents/Bullets/GCBullet.cpp"
+
+  "GameObjects/Bullet.cpp" "Components/InputComponents/Bullets/ICBullet.h" "Components/InputComponents/Bullets/ICBullet.cpp" "Components/PhysicsComponents/Bullets/PCBullet.h" "Components/PhysicsComponents/Bullets/PCBullet.cpp")

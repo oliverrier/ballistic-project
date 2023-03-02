@@ -24,6 +24,10 @@ public:
 	void initObjects();
 	void registerEvents();
 
+public:
+	float angle1;
+	float angle2;
+
 private:
 
 	//PhysicsWorld* m_physicsWorld;
@@ -37,9 +41,6 @@ private:
 		
 	std::shared_ptr<RectEntity> m_platform;
 	sf::RectangleShape* floor;
-
-	std::shared_ptr<CircleEntity> body;
-	sf::CircleShape* m_circle;
 
 	std::shared_ptr<World> m_world;
 
