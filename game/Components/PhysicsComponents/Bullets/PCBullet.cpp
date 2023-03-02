@@ -14,7 +14,8 @@ void PCBullet::updateImplementation(const float& deltaTime, IGameObject& gameObj
 {
 	Bullet& bullet = static_cast<Bullet&>(gameObject);
 
-	if (bullet.m_body->rb->GetContactList() != nullptr) {
+	auto contactList = bullet.m_body->rb->GetContactList();
+	if (contactList != nullptr && contactList->contact->GetManifold()->pointCount > 0) {
 		std::cout << "destroyed" << std::endl;
 		auto world = World::GetWorld();
 		world->DestroyBody(bullet.m_body->rb);
