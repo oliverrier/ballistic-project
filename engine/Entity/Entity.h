@@ -42,4 +42,4 @@ class RectEntity;
 class CircleEntity;
 
 using AvailableTypes = typelist<RectEntity, CircleEntity>;
-using EntityFactory = Factory<AvailableTypes>;
+using EntityFactory = Factory<AvailableTypes, std::shared_ptr>;

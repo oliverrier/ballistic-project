@@ -6,6 +6,7 @@
 #include "engine/Ui/Buttons/RectangleButton.h"
 #include "game/Camera.h"
 #include "game/EventManager.h"
+#include "engine/Entity/RectEntity.h"
 
 
 class GameScene : public IScene
@@ -32,6 +33,9 @@ private:
 	std::shared_ptr<RectangleButton> exitButton;
 
 	sf::Sprite* m_backgroundSprite;
+		
+	std::shared_ptr<RectEntity> m_platform;
+
 
 };
 
