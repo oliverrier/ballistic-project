@@ -16,28 +16,9 @@ target_include_directories(engine PUBLIC
 
 file(COPY ${CMAKE_CURRENT_LIST_DIR}/Assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
-target_sources(engine PRIVATE
- "Scene/Scene.cpp"
- "Scene/Scene.h"
- "GameObject/GameObject.h"
- "Components/GraphicsComponent.h"
- "Components/InputComponent.h"
- "Components/PhysicsComponent.h"
- "Game/Game.h"
- "Game/Game.cpp"
- "GameObject/GameObject.h"
- "Ui/UiFactory.h"
- "utils/Factory/Factory.h"
- "utils/Math/Common.h"
- "utils/Math/Quat2D.h"
- "utils/Math/Vector.h"
- "utils/Math/Vector2.h"
- "utils/RTTI/RTTI.h"
- "utils/Typelist/Typelist.h"
- "Ui/HUD/HudElement.h"   
- "Ui/HUD/HudArrow.h" 
- "Entity/RectEntity.h" 
- "Entity/Entity.h" 
- "Entity/CircleEntity.h" 
- "Entity/PolygonEntity.h" 
- )
+file(GLOB_RECURSE E_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+target_sources(engine PRIVATE ${E_SOURCES})
+
+# Add all .h files in the directory to the physicsEngine target
+file(GLOB_RECURSE E_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
+target_sources(engine PRIVATE ${E_HEADERS})

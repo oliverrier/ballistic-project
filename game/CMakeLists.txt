@@ -16,40 +16,9 @@ target_include_directories(ballistic-project PUBLIC
  $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../>
 )
 
-target_sources(ballistic-project PRIVATE
-  main.cpp
- "scenes/StartScene.h"
- "scenes/StartScene.cpp"
- "scenes/SceneEnum.h"
- "GameObjects/UI/Button.h"
- "GameObjects/UI/Button.cpp"
- "Components/GraphicsComponents/GCVoid.cpp"
- "Components/GraphicsComponents/GCVoid.h"
- "Components/GraphicsComponents/UI/GCButton.cpp"
- "Components/GraphicsComponents/UI/GCButton.h"
- "Components/InputComponents/ICVoid.cpp"
- "Components/InputComponents/ICVoid.h"
- "Components/InputComponents/UI/ICButton.cpp"
- "Components/InputComponents/UI/ICButton.h"
- "Components/PhysicsComponents/PCVoid.cpp"
- "Components/PhysicsComponents/PCVoid.h"
- "Components/PhysicsComponents/UI/PCButton.cpp"
- "Components/PhysicsComponents/UI/PCButton.h"
- "Camera.h"
- "EventManager.h"
- "scenes/GameScene.h" 
- "scenes/GameScene.cpp" 
- "GameObjects/Bullet.h" 
- "Components/GraphicsComponents/Bullets/GCBullet.h" 
- "Components/GraphicsComponents/Bullets/GCBullet.cpp"
-  "Components/GraphicsComponents/Ground/GCGround.h" 
- "Components/GraphicsComponents/Ground/GCGround.cpp"
-  "GameObjects/Bullet.cpp"
-  "GameObjects/Ground.h"
-  "GameObjects/Ground.cpp"
-  "Components/InputComponents/Bullets/ICBullet.h" 
-  "Components/InputComponents/Bullets/ICBullet.cpp" 
-  "Components/PhysicsComponents/Bullets/PCBullet.h" 
-  "Components/PhysicsComponents/Bullets/PCBullet.cpp"
-  "Utils/Utils.h" 
-  "GameObjects/GameObjectFactory.h") 
+file(GLOB_RECURSE GAME_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+target_sources(ballistic-project PRIVATE ${GAME_SOURCES})
+
+# Add all .h files in the directory to the physicsEngine target
+file(GLOB_RECURSE GAME_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
+target_sources(ballistic-project PRIVATE ${GAME_HEADERS})

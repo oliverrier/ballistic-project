@@ -10,9 +10,9 @@ target_include_directories(tools PUBLIC
  $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../>
 )
 
-target_sources(tools PRIVATE
-  "DesignPatterns.cpp"
-  "DesignPatterns/Composite.h"
-  "DesignPatterns/Singleton.h"
-  "PerlinNoise.h"
-)
+file(GLOB_RECURSE T_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
+target_sources(tools PRIVATE ${T_SOURCES})
+
+# Add all .h files in the directory to the physicsEngine target
+file(GLOB_RECURSE T_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/*.h)
+target_sources(tools PRIVATE ${T_HEADERS})
