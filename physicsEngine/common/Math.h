@@ -51,6 +51,12 @@ struct Vec2
 		x *= a; y *= a;
 	}
 
+	/// Multiply this vector by a scalar.
+	void operator /= (float a)
+	{
+		x /= a; y /= a;
+	}
+
 	/// Get the length of this vector (the norm).
 	float Length() const
 	{

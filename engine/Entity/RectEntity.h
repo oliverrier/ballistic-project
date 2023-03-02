@@ -5,7 +5,7 @@ class RectEntity: public Entity
 {
 	friend Factory;
 private:
-	RectEntity(Vec2 size, Vec2 position, BodyType type): size(size)
+	RectEntity(const Vec2& size, const Vec2& position, const BodyType type): size(size)
 	{
 		BodyDef bd;
 		bd.type = type;
@@ -26,6 +26,6 @@ private:
 
 		rb = body;
 	}
-
+public:
 	Vec2 size;
 };

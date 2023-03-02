@@ -1,5 +1,4 @@
 #pragma once
-#include <memory>
 
 #include "../utils/Typelist/Typelist.h"
 #include "../utils/Factory/Factory.h"
@@ -40,6 +39,7 @@ private:
 
 class RectEntity;
 class CircleEntity;
+class PolygonEntity;
 
-using AvailableTypes = typelist<RectEntity, CircleEntity>;
+using AvailableTypes = typelist<RectEntity, CircleEntity, PolygonEntity>;
 using EntityFactory = Factory<AvailableTypes>;
