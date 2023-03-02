@@ -29,14 +29,11 @@ GameScene::GameScene() {
 	shootInfo = UiFactory::create < HudElement<std::string>>(FVector2(1300.f, 880.f), FVector2(500.f, 50.f), sf::Color(19, 48, 54, 255), "Space  Tirer");
 	hudElements.push_back(shootInfo);
 
-	angle1 = 50.f;
+	angle1 = 0.f;
 	angle2 = 200.f;
 
-	std::shared_ptr<Bullet> mainBullet = GameObjectFactory::create<Bullet>(window_width, angle1);
+	std::shared_ptr<Bullet> mainBullet = GameObjectFactory::create<Bullet>(window_width, &angle1);
 	addGameObjects(mainBullet);
-
-	//addGameObjects(GameObjectFactory::create<Bullet>(body2, circle2, angle2));
-
 
 	m_world = World::GetWorld();
 
@@ -70,26 +67,19 @@ void GameScene::processInput(sf::Event& inputEvent) {
 	//if (inputEvent.key.code == sf::Keyboard::Escape)
 	//    m_window.close();
 
-	
+	if (inputEvent.type == sf::Event::KeyPressed && inputEvent.key.code == sf::Keyboard::Z) {
 
-	if (inputEvent.type == sf::Event::MouseButtonReleased && inputEvent.mouseButton.button == 0) {
-
-		/*FVector2 mousePosition = FVector2(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
-		startButton->handleClick(mousePosition);
-		exitButton->handleClick(mousePosition);*/
+		angle1 -= 10;
+	}
+	else if (inputEvent.type == sf::Event::KeyPressed && inputEvent.key.code == sf::Keyboard::S)
+	{
+		angle1 += 10;
 	}
 
 }
 
 void GameScene::update(const float& deltaTime) {
 
-	//startButton->setPosition(startButton->getInitialPosition());
-	//exitButton->setPosition(exitButton->getInitialPosition
-	/*if (body->rb->GetContactList() != nullptr) {
-		body->rb->SetLinearVelocity(Vec2(0,0));
-		body->rb->SetTransform(Vec2(0, -500), 0);
-		body->rb->SetGravityScale(0.f);
-	}*/
 	float timeStep = 1.0f / 60.0f;
 
 	int velocityIterations = 6;

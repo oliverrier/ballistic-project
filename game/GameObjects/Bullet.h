@@ -9,12 +9,13 @@
 struct Bullet : public GameObject<GCBullet, PCBullet, ICBullet>
 {
 public:
-	Bullet(float window_width, float angle);
+	Bullet(float window_width, float* angle);
 	~Bullet() = default;
 
 
 	std::shared_ptr<CircleEntity> m_body;
 	sf::CircleShape* m_circle;
-	float angle;
+	float* m_angle;
+	bool m_destroyed = true;
 	
 };

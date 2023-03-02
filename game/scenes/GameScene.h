@@ -9,6 +9,7 @@
 #include "engine/Entity/RectEntity.h"
 #include "engine/Ui/HUD/HudElement.h"
 #include "game/GameObjects/Ground.h"
+#include "game/GameObjects/Bullet.h"
 
 
 class GameScene : public IScene
@@ -28,6 +29,11 @@ public:
 public:
 	float angle1;
 	float angle2;
+
+	std::shared_ptr<Bullet> fragment1;
+	std::shared_ptr<Bullet> fragment2;
+	std::shared_ptr<Bullet> fragment3;
+	std::shared_ptr<Bullet> fragment4;
 
 private:
 
@@ -50,7 +56,7 @@ private:
 	std::shared_ptr<HudElement<std::string>> shootInfo;
 
 	std::vector < std::shared_ptr<HudElement<std::string>> > hudElements;
-
+	
 };
 
 #endif // !GAMESCENE_H
