@@ -10,9 +10,11 @@
 #include "SFML/Graphics.hpp"
 #include "engine/Entity/Entity.h"
 #include "engine/Entity/CircleEntity.h"
+#include "engine/Entity/RectEntity.h"
 #include "game/GameObjects/Bullet.h"
 #include <game/GameObjects/GameObjectFactory.h>
 #include <game/Utils/Utils.h>
+#include "game/GameObjects/Character/Character.h"
 
 
 constexpr int window_width = 1920;
@@ -34,6 +36,13 @@ GameScene::GameScene() {
 
 	std::shared_ptr<Bullet> mainBullet = GameObjectFactory::create<Bullet>(window_width, angle1);
 	addGameObjects(mainBullet);
+
+	std::shared_ptr<RectEntity> characterBody = EntityFactory::create<RectEntity>(Vec2{ 20.f,  20.f }, Vec2{ 50.f, window_height - 500 }, BodyType::dynamicBody);
+	auto characterBoundingBox = new sf::RectangleShape({ characterBody->size.x, characterBody->size.y });
+
+	std::shared_ptr<Character> character = GameObjectFactory::create<Character>(characterBody, characterBoundingBox);
+	addGameObjects(character);
+
 
 	m_world = World::GetWorld();
 
