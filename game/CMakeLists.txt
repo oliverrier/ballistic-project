@@ -9,6 +9,7 @@ target_link_libraries(ballistic-project PUBLIC
     ballistic-project::engine
     ballistic-project::tools
     ballistic-project::physicsEngine
+    sfml-graphics sfml-audio sfml-system
 )
 target_include_directories(ballistic-project PUBLIC
  $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../>

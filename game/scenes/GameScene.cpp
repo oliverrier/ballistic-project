@@ -9,7 +9,6 @@
 #include "physicsEngine/dynamics/World.h"
 #include "SFML/Graphics.hpp"
 #include "engine/Entity/Entity.h"
-#include "engine/Entity/RectEntity.h"
 #include "engine/Entity/CircleEntity.h"
 
 
