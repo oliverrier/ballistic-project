@@ -10,9 +10,11 @@
 #include "SFML/Graphics.hpp"
 #include "engine/Entity/Entity.h"
 #include "engine/Entity/CircleEntity.h"
+#include "engine/Entity/RectEntity.h"
 #include "game/GameObjects/Bullet.h"
 #include <game/GameObjects/GameObjectFactory.h>
 #include <game/Utils/Utils.h>
+#include "game/GameObjects/Character/Character.h"
 
 
 constexpr int window_width = 1920;
@@ -33,6 +35,13 @@ GameScene::GameScene() {
 	shootInfo = UiFactory::create < HudElement<std::string>>(FVector2(1300.f, 980.f), FVector2(500.f, 50.f), sf::Color(19, 48, 54, 255), "Space  Tirer");
 	hudElements.push_back(shootInfo);
 	windArrow = UiFactory::create < HudArrow>(FVector2(420.f, 200.f), FVector2(150.f, 50.f), &windAngle);
+
+	std::shared_ptr<RectEntity> characterBody = EntityFactory::create<RectEntity>(Vec2{ 20.f,  20.f }, Vec2{ 50.f, window_height - 500 }, BodyType::dynamicBody);
+	auto characterBoundingBox = new sf::RectangleShape({ characterBody->size.x, characterBody->size.y });
+
+	std::shared_ptr<Character> character = GameObjectFactory::create<Character>(characterBody, characterBoundingBox);
+	addGameObjects(character);
+
 
 	m_world = World::GetWorld();
 

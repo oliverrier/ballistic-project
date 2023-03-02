@@ -1,6 +1,9 @@
+#pragma once
+
 #include "Entity.h"
 #include "physicsEngine/collision/PolygonShape.h"
 #include "physicsEngine/dynamics/World.h"
+#include "physicsEngine/dynamics/Fixture.h"
 
 class RectEntity: public Entity
 {
@@ -27,6 +30,7 @@ private:
 
 		rb = body;
 	}
+	
 public:
 	Vec2 size;
 };
