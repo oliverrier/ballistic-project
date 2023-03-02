@@ -14,4 +14,5 @@ target_sources(tools PRIVATE
   "DesignPatterns.cpp"
   "DesignPatterns/Composite.h"
   "DesignPatterns/Singleton.h"
+  "PerlinNoise.h"
 )

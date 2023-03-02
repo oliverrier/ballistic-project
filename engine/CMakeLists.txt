@@ -8,6 +8,7 @@ target_link_libraries(engine PUBLIC
     ballistic-project::tools
     sfml-graphics sfml-audio sfml-system
     ballistic-project::physicsEngine
+    ballistic-project::thor
 )
 target_include_directories(engine PUBLIC
  $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../>
@@ -37,4 +38,6 @@ target_sources(engine PRIVATE
  "Ui/HUD/HudArrow.h" 
  "Entity/RectEntity.h" 
  "Entity/Entity.h" 
- "Entity/CircleEntity.h")
+ "Entity/CircleEntity.h" 
+ "Entity/PolygonEntity.h" 
+ )

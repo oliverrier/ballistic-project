@@ -10,6 +10,7 @@ target_link_libraries(ballistic-project PUBLIC
     ballistic-project::tools
     ballistic-project::physicsEngine
     sfml-graphics sfml-audio sfml-system
+    ballistic-project::thor
 )
 target_include_directories(ballistic-project PUBLIC
  $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/../>
@@ -42,4 +43,8 @@ target_sources(ballistic-project PRIVATE
  "Components/GraphicsComponents/Bullets/GCBullet.h" 
  "Components/GraphicsComponents/Bullets/GCBullet.cpp"
 
-  "GameObjects/Bullet.cpp" "Components/InputComponents/Bullets/ICBullet.h" "Components/InputComponents/Bullets/ICBullet.cpp" "Components/PhysicsComponents/Bullets/PCBullet.h" "Components/PhysicsComponents/Bullets/PCBullet.cpp")
+  "GameObjects/Bullet.cpp" "Components/InputComponents/Bullets/ICBullet.h" 
+  "Components/InputComponents/Bullets/ICBullet.cpp" 
+  "Components/PhysicsComponents/Bullets/PCBullet.h" 
+  "Components/PhysicsComponents/Bullets/PCBullet.cpp"
+  "Utils/Utils.h") 

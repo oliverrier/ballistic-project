@@ -13,9 +13,6 @@
 #include "../collision/TimeOfImpact.h"
 #include "../collision/Collision.h"
 #include "../collision/ChainShape.h"
-#include "../collision/CircleShape.h"
-#include "../collision/PolygonShape.h"
-#include "../collision/EdgeShape.h"
 
 struct RayCastInput;
 struct TimeStep;
