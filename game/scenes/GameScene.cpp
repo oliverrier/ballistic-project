@@ -32,16 +32,10 @@ GameScene::GameScene() {
 	angle1 = 50.f;
 	angle2 = 200.f;
 
-	// CA DOIT ETRE FAIT DANS LE CONMSTRUCTEUR DE Bullet 
-	std::shared_ptr<CircleEntity> body = EntityFactory::create<CircleEntity>(5.f, Vec2{ window_width / 2.f, 10.0f }, BodyType::dynamicBody);
-	auto circle = new sf::CircleShape(body->radius);
+	std::shared_ptr<Bullet> mainBullet = GameObjectFactory::create<Bullet>(window_width, angle1);
+	addGameObjects(mainBullet);
 
-	std::shared_ptr<CircleEntity> body2 = EntityFactory::create<CircleEntity>(5.f, Vec2{ window_width / 2.f, 10.0f }, BodyType::dynamicBody);
-	auto circle2 = new sf::CircleShape(body2->radius);
-	////
-
-	addGameObjects(GameObjectFactory::create<Bullet>(body, circle, angle1));
-	addGameObjects(GameObjectFactory::create<Bullet>(body2, circle2, angle2));
+	//addGameObjects(GameObjectFactory::create<Bullet>(body2, circle2, angle2));
 
 
 	m_world = World::GetWorld();

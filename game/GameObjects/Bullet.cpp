@@ -2,6 +2,7 @@
 
 #include <iostream>
 
-Bullet::Bullet(std::shared_ptr<CircleEntity> body, sf::CircleShape* circle, float angle) : m_body(body), m_circle(circle), angle(angle){
-	std::cout << "Bullet crée" << std::endl;
+Bullet::Bullet(float window_width, float angle) : angle(angle){
+	m_body = EntityFactory::create<CircleEntity>(5.f, Vec2{ window_width / 2.f, 10.0f }, BodyType::dynamicBody);
+	m_circle = new sf::CircleShape(m_body->radius);
 }
