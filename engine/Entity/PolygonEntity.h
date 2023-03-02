@@ -30,6 +30,7 @@ private:
 			shape.SetTwoSided(v1, v2);
 			fdef.shape = &shape;
 			fdef.friction = 1;
+			fdef.restitution = 0;
 			body->CreateFixture(&fdef);
 		}
 

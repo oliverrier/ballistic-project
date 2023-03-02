@@ -25,6 +25,7 @@ private:
 		fd.shape = &shape;
 		fd.density = 1.0f;
 		fd.friction = 0.8f;
+		fd.restitution = 0.f;
 
 		body->CreateFixture(&fd);
 
