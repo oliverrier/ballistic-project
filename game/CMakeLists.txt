@@ -42,9 +42,14 @@ target_sources(ballistic-project PRIVATE
  "GameObjects/Bullet.h" 
  "Components/GraphicsComponents/Bullets/GCBullet.h" 
  "Components/GraphicsComponents/Bullets/GCBullet.cpp"
-
-  "GameObjects/Bullet.cpp" "Components/InputComponents/Bullets/ICBullet.h" 
+  "Components/GraphicsComponents/Ground/GCGround.h" 
+ "Components/GraphicsComponents/Ground/GCGround.cpp"
+  "GameObjects/Bullet.cpp"
+  "GameObjects/Ground.h"
+  "GameObjects/Ground.cpp"
+  "Components/InputComponents/Bullets/ICBullet.h" 
   "Components/InputComponents/Bullets/ICBullet.cpp" 
   "Components/PhysicsComponents/Bullets/PCBullet.h" 
   "Components/PhysicsComponents/Bullets/PCBullet.cpp"
-  "Utils/Utils.h") 
+  "Utils/Utils.h" 
+  "GameObjects/GameObjectFactory.h") 

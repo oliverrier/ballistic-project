@@ -1,6 +1,7 @@
 #include "Entity.h"
 #include "physicsEngine/collision/ChainShape.h"
 #include "physicsEngine/collision/EdgeShape.h"
+#include "physicsEngine/dynamics/World.h"
 
 class PolygonEntity : public Entity
 {

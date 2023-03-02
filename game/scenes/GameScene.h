@@ -8,6 +8,7 @@
 #include "game/EventManager.h"
 #include "engine/Entity/RectEntity.h"
 #include "engine/Ui/HUD/HudElement.h"
+#include "game/GameObjects/Ground.h"
 
 
 class GameScene : public IScene
@@ -39,8 +40,7 @@ private:
 
 	sf::Sprite* m_backgroundSprite;
 		
-	std::shared_ptr<RectEntity> m_platform;
-	sf::RectangleShape* floor;
+	std::shared_ptr<Ground> m_platform;
 
 	std::shared_ptr<World> m_world;
 

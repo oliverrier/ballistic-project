@@ -25,13 +25,13 @@ public:
 
     IGameObject* getGameObject(const size_t index);
 
-    std::vector<IGameObject*>& getGameObjects();
+    std::vector<std::shared_ptr<IGameObject>>& getGameObjects();
 
     void clearGameObjects();
 
 protected:
     std::shared_ptr<sf::RenderWindow> m_window;
-    std::vector<IGameObject*> m_gameObjects;
+    std::vector<std::shared_ptr<IGameObject>> m_gameObjects;
 };
 
 

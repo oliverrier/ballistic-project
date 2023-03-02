@@ -11,6 +11,8 @@
 #include "engine/Entity/Entity.h"
 #include "engine/Entity/CircleEntity.h"
 #include "game/GameObjects/Bullet.h"
+#include <game/GameObjects/GameObjectFactory.h>
+#include <game/Utils/Utils.h>
 
 
 constexpr int window_width = 1920;
@@ -30,24 +32,27 @@ GameScene::GameScene() {
 	angle1 = 50.f;
 	angle2 = 200.f;
 
+	// CA DOIT ETRE FAIT DANS LE CONMSTRUCTEUR DE Bullet 
 	std::shared_ptr<CircleEntity> body = EntityFactory::create<CircleEntity>(5.f, Vec2{ window_width / 2.f, 10.0f }, BodyType::dynamicBody);
 	auto circle = new sf::CircleShape(body->radius);
 
 	std::shared_ptr<CircleEntity> body2 = EntityFactory::create<CircleEntity>(5.f, Vec2{ window_width / 2.f, 10.0f }, BodyType::dynamicBody);
 	auto circle2 = new sf::CircleShape(body2->radius);
+	////
 
-
-	addGameObjects(new Bullet(body, circle, angle1));
-	addGameObjects(new Bullet(body2, circle2, angle2));
+	addGameObjects(GameObjectFactory::create<Bullet>(body, circle, angle1));
+	addGameObjects(GameObjectFactory::create<Bullet>(body2, circle2, angle2));
 
 
 	m_world = World::GetWorld();
 
 	Fixture* m_character;
 
-	m_platform = EntityFactory::create<RectEntity>(Vec2{ 300.0f, 55.f }, Vec2{ window_width / 2.f, 10.0f + 200.f }, BodyType::staticBody);
-	floor = new sf::RectangleShape(sf::Vector2f(300.0f, 55.f));
-
+	std::vector<Vec2> vertices;
+	GenerateFloorVertex({ 0.f, 200.f }, { window_width , 200.f }, 10, vertices);
+	m_platform = GameObjectFactory::create<Ground>(vertices, Vec2(0, window_height));
+	addGameObjects(m_platform);
+	
 	m_eventManager = new EventManager(m_window);
 
 	initButtons();
@@ -103,8 +108,6 @@ void GameScene::update(const float& deltaTime) {
 		element->setPosition(element->getInitialPosition());
 	}
 
-	floor->setPosition({ m_platform->rb->GetPosition().x, m_platform->rb->GetPosition().y });
-
 
 	IScene::update(deltaTime);
 }
@@ -120,8 +123,6 @@ void GameScene::render() {
 
 	//startButton->draw(*m_window, sf::RenderStates::Default);
 	//exitButton->draw(*m_window, sf::RenderStates::Default);
-	
-	m_window->draw(*floor);
 	
 	IScene::render();
 }

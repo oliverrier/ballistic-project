@@ -1,12 +1,7 @@
-#ifndef GAMEOBJECT_H
-#define GAMEOBJECT_H
+#pragma once 
 
 #include "../../Tools/DesignPatterns/Composite.h"
-
 #include "../Components/InputComponent.h"
-#include "../Components/PhysicsComponent.h"
-#include "../Components/GraphicsComponent.h"
-
 #include <SFML/Graphics.hpp>
 
 
@@ -43,5 +38,3 @@ public:
 	}
 
 };
-
-#endif // GAMEOBJECT_H

@@ -30,7 +30,7 @@ const sf::Vector2f IScene::getMousePositionView()
 
 void IScene::processInput(sf::Event& inputEvent)
 {
-	for (IGameObject* pGameObject : m_gameObjects)
+	for (const auto& pGameObject : m_gameObjects)
 	{
 		pGameObject->processInput(inputEvent, *this);
 	}
@@ -38,7 +38,7 @@ void IScene::processInput(sf::Event& inputEvent)
 
 void IScene::update(const float& deltaTime)
 {
-	for (IGameObject* pGameObject : m_gameObjects)
+	for (const auto& pGameObject : m_gameObjects)
 	{
 		pGameObject->update(deltaTime, *this);
 	}
@@ -46,7 +46,7 @@ void IScene::update(const float& deltaTime)
 
 void IScene::render()
 {
-	for (IGameObject* pGameObject : m_gameObjects)
+	for (const auto& pGameObject : m_gameObjects)
 	{
 		pGameObject->render(*m_window);
 	}
@@ -57,19 +57,15 @@ void IScene::render()
 
 IGameObject* IScene::getGameObject(const size_t index)
 {
-	return m_gameObjects.at(index);
+	return m_gameObjects.at(index).get();
 }
 
-std::vector<IGameObject*>& IScene::getGameObjects()
+std::vector<std::shared_ptr<IGameObject>>& IScene::getGameObjects()
 {
 	return m_gameObjects;
 }
 
 void IScene::clearGameObjects()
 {
-	for (IGameObject* pGameObject : m_gameObjects)
-	{
-		delete pGameObject;
-	}
 	m_gameObjects.clear();
 }
