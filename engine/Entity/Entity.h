@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 
 #include "../utils/Typelist/Typelist.h"
 #include "../utils/Factory/Factory.h"
@@ -42,4 +43,4 @@ class CircleEntity;
 class PolygonEntity;
 
 using AvailableTypes = typelist<RectEntity, CircleEntity, PolygonEntity>;
-using EntityFactory = Factory<AvailableTypes>;
+using EntityFactory = Factory<AvailableTypes, std::shared_ptr>;

@@ -1,5 +1,4 @@
-#ifndef STARTSCENE_H
-#define STARTSCENE_H
+#pragma once
 
 #include "engine/Scene/Scene.h"
 #include "game/GameObjects/UI/Button.h"
@@ -24,5 +23,3 @@ private:
 	sf::Sprite* m_backgroundSprite;
 
 };
-
-#endif // !STARTSCENE_H

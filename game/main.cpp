@@ -3,7 +3,6 @@
 #include <engine/Game/Game.h>
 
 #include "Scenes/StartScene.h"
-#include "Scenes/PhysicsScene.h"
 #include "scenes/GameScene.h"
 #include "Scenes/SceneEnum.h"
 

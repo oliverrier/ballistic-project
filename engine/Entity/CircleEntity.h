@@ -1,5 +1,9 @@
+#pragma once
+
 #include "Entity.h"
 #include "physicsEngine/collision/CircleShape.h"
+#include "physicsEngine/dynamics/World.h"
+#include "physicsEngine/dynamics/Fixture.h"
 
 class CircleEntity: public Entity
 {

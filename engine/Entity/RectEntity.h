@@ -1,5 +1,6 @@
 #include "Entity.h"
 #include "physicsEngine/collision/PolygonShape.h"
+#include "physicsEngine/dynamics/World.h"
 
 class RectEntity: public Entity
 {

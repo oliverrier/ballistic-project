@@ -2,6 +2,7 @@
 
 #include "game/GameObjects/UI/Button.h"
 #include "game/Scenes/StartScene.h"
+
 ICButton::ICButton()
 {
 }

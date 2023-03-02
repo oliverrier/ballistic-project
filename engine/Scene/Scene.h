@@ -1,12 +1,10 @@
-#ifndef SCENE_H
-#define SCENE_H
+#pragma once
+
 
 #include <SFML/Graphics.hpp>
 
 
 class IGameObject;
-
-
 
 class IScene 
 {
@@ -42,5 +40,3 @@ inline void IScene::addGameObjects(Args ...gameObjects)
 {
     (m_gameObjects.push_back(gameObjects), ...);
 }
-
-#endif // SCENE_H

@@ -9,6 +9,7 @@ target_link_libraries(ballistic-project PUBLIC
     ballistic-project::engine
     ballistic-project::tools
     ballistic-project::physicsEngine
+    sfml-graphics sfml-audio sfml-system
     ballistic-project::thor
 )
 target_include_directories(ballistic-project PUBLIC
@@ -37,4 +38,13 @@ target_sources(ballistic-project PRIVATE
  "Camera.h"
  "EventManager.h"
  "scenes/GameScene.h" 
- "scenes/GameScene.cpp" "Utils/Utils.h") 
+ "scenes/GameScene.cpp" 
+ "GameObjects/Bullet.h" 
+ "Components/GraphicsComponents/Bullets/GCBullet.h" 
+ "Components/GraphicsComponents/Bullets/GCBullet.cpp"
+
+  "GameObjects/Bullet.cpp" "Components/InputComponents/Bullets/ICBullet.h" 
+  "Components/InputComponents/Bullets/ICBullet.cpp" 
+  "Components/PhysicsComponents/Bullets/PCBullet.h" 
+  "Components/PhysicsComponents/Bullets/PCBullet.cpp"
+  "Utils/Utils.h") 

@@ -55,9 +55,3 @@ constexpr auto RadiansToDegrees(T const& RadVal)
 	return RadVal * (180.f / PI);
 }
 
-/** Clamps X to be between Min and Max, inclusive */
-template< class T >
-constexpr T Clamp(const T X, const T Min, const T Max)
-{
-	return (X < Min) ? Min : (X < Max) ? X : Max;
-}

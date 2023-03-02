@@ -3,16 +3,16 @@
 
 #include <functional>
 
-#include "game/Components/InputComponents/UI/ICButton.h"
-#include "game/Components/PhysicsComponents/UI/PCButton.h"
-#include "game/Components/GraphicsComponents/UI/GCButton.h"
+#include "game/Components/InputComponents/ICVoid.h"
+#include "game/Components/PhysicsComponents/PCvoid.h"
+#include "game/Components/GraphicsComponents/GCvoid.h"
 #include "engine/GameObject/GameObject.h"
 
 
 enum button_states { BUTTON_IDLE = 0, BUTTON_HOVER, BUTTON_PRESSED };
 
 
-class Button: public GameObject<ICButton, PCButton, GCButton> {
+class Button: public GameObject<ICVoid, PCVoid, GCVoid> {
 public:
 	Button(float x, float y, float width, float height, std::function<void(Button* button)> const& onLeftClick);
 	Button(float x, float y, float width, float height, std::function<void(Button* button)> const& onLeftClick, std::function<void(Button* button)> const& onRightClick);
