@@ -11,16 +11,19 @@ private:
 		BodyDef bd;
 		bd.type = type;
 		bd.position.Set(position.x, position.y);
+		bd.allowSleep = false;
 
 		auto world = World::GetWorld();
 		Body* body = world->CreateBody(&bd);
 
 		CircleShape shape;
-		shape.m_radius = 0.5f;
+		shape.m_radius = radius;
 
 		FixtureDef fd;
 		fd.shape = &shape;
 		fd.density = 1.0f;
+		fd.friction = 1.0f;
+		fd.restitution = 0.4f;
 
 		body->CreateFixture(&fd);
 

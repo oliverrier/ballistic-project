@@ -1,4 +1,7 @@
 #include "Collision.h"
+
+#include <vector>
+
 #include "Distance.h"
 
 void WorldManifold::Initialize(const Manifold* manifold,
@@ -311,7 +314,7 @@ static Hull RecurseHull(Vec2 p1, Vec2 p2, Vec2* ps, int count)
 // - merges vertices based on linearSlop
 // - removes collinear points using linearSlop
 // - returns an empty hull if it fails
-Hull ComputeHull(const Vec2* points, int count)
+Hull ComputeHull(const std::vector<Vec2>& points, int count)
 {
 	Hull hull;
 	hull.count = 0;

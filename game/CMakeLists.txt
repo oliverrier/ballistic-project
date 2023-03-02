@@ -37,4 +37,4 @@ target_sources(ballistic-project PRIVATE
  "Camera.h"
  "EventManager.h"
  "scenes/GameScene.h" 
- "scenes/GameScene.cpp") 
+ "scenes/GameScene.cpp" "Utils/Utils.h") 

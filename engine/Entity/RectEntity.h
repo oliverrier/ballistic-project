@@ -15,7 +15,7 @@ private:
 		Body * body = world->CreateBody(&bd);
 
 		PolygonShape shape;
-		shape.SetAsBox(size.x, size.y);
+		shape.SetAsBox(size.x / 2.f, size.y / 2.f);
 
 		FixtureDef fd;
 		fd.shape = &shape;

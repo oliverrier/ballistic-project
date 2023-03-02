@@ -1,5 +1,7 @@
 #pragma once
 #include <limits.h>
+#include <vector>
+
 #include "../common/Math.h"
 
 /// @file
@@ -243,7 +245,7 @@ struct Hull
 /// - less than 3 points
 /// - more than maxPolygonVertices points
 /// This welds close points and removes collinear points.
-Hull ComputeHull(const Vec2* points, int count);
+Hull ComputeHull(const std::vector<Vec2>& points, int count);
 
 /// This determines if a hull is valid. Checks for:
 /// - convexity

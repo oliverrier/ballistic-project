@@ -1,4 +1,6 @@
 #pragma once
+#include <vector>
+
 #include "Shape.h"
 
 struct Hull;
@@ -23,7 +25,7 @@ public:
 	/// @warning the points may be re-ordered, even if they form a convex polygon
 	/// @warning if this fails then the polygon is invalid
 	/// @returns true if valid
-	bool Set(const Vec2* points, int count);
+	bool Set(const std::vector<Vec2>& points, int count);
 
 	/// Create a polygon from a given convex hull (see ComputeHull).
 	/// @warning the hull must be valid or this will crash or have unexpected behavior

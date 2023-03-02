@@ -1,4 +1,7 @@
 #include "PolygonShape.h"
+
+#include <vector>
+
 #include "../common/Math.h"
 #include "../common/Common.h"
 
@@ -99,7 +102,7 @@ static Vec2 ComputeCentroid(const Vec2* vs, int count)
 	return c;
 }
 
-bool PolygonShape::Set(const Vec2* vertices, int count)
+bool PolygonShape::Set(const std::vector<Vec2>& vertices, int count)
 {
 	Hull hull = ComputeHull(vertices, count);
 
