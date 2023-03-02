@@ -31,7 +31,7 @@ inline void GenerateFloorVertex(Vec2 start, Vec2 end, int number_of_points, std:
 {
     vertices.reserve(number_of_points + 2);
     vertices.emplace_back(0.f, 0.f);
-    vertices.emplace_back(800, 0.f);
+    vertices.emplace_back(end.x, 0.f);
     vertices.emplace_back(end.x, -end.y);
 
     srand((unsigned)time(NULL));
@@ -44,7 +44,7 @@ inline void GenerateFloorVertex(Vec2 start, Vec2 end, int number_of_points, std:
         const float value = perlin.octave1D(fx * static_cast<float>(i), octaves);
         float y = MapValue(value, -1.f, 1.f, min, max);
 
-        vertices.emplace_back(800 / number_of_points * i, -start.y - y);
+        vertices.emplace_back(end.x / number_of_points * i, -start.y - y);
     }
 
     vertices.emplace_back(0.f, -start.y);

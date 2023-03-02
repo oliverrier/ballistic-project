@@ -41,7 +41,7 @@ GameScene::GameScene() {
 
 	std::vector<Vec2> vertices;
 	GenerateFloorVertex({ 0.f, 200.f }, { window_width , 200.f }, 10, vertices);
-	m_platform = GameObjectFactory::create<Ground>(vertices, Vec2(0, window_height));
+	m_platform = GameObjectFactory::create<Ground>(vertices, Vec2(0, window_height - 200));
 	addGameObjects(m_platform);
 	
 	m_eventManager = new EventManager(m_window);
