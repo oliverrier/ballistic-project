@@ -14,6 +14,8 @@
 #include "game/GameObjects/Bullet.h"
 #include <game/GameObjects/GameObjectFactory.h>
 #include <game/Utils/Utils.h>
+
+#include "game/GameObjects/Wall.h"
 #include "game/GameObjects/Character/Character.h"
 
 
@@ -59,6 +61,10 @@ GameScene::GameScene() {
 	m_platform = GameObjectFactory::create<Ground>(vertices, Vec2(0, window_height - 200));
 	addGameObjects(m_platform);
 
+	auto m_wall = GameObjectFactory::create<Wall>(Vec2{ 10.f, 10000000.f }, Vec2{ 1.f, 0.f });
+	addGameObjects(m_wall);
+	auto m_wall2 = GameObjectFactory::create<Wall>(Vec2{ 10.f, 10000000.f }, Vec2{ window_width - 1.f, 0.f });
+	addGameObjects(m_wall2);
 
 	m_currentCharacter = player1;
 
@@ -117,7 +123,7 @@ void GameScene::update(const float& deltaTime) {
 		time = 30.f;
 
 		if (player_index_to_play == 0)
-		{
+		{			 
 			m_currentCharacter = player1;
 		} else
 		{

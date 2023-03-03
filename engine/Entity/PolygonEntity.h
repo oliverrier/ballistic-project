@@ -1,3 +1,4 @@
+#pragma once
 #include "Entity.h"
 #include "physicsEngine/collision/ChainShape.h"
 #include "physicsEngine/collision/EdgeShape.h"

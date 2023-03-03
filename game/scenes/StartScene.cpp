@@ -1,6 +1,5 @@
 #include "StartScene.h"
 #include <iostream>
-#include "game/GameObjects/UI/Button.h"
 #include "engine/Game/Game.h"
 #include "game/Scenes/SceneEnum.h"
 #include "engine/Ui/UiFactory.h"
