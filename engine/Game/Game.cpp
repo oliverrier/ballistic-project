@@ -19,9 +19,10 @@ void Game::run(sf::VideoMode videoMode, std::string windowTitle, sf::Uint32 styl
     while (m_window.isOpen()) {
 
         deltaTime = DeltaTimeClock.getElapsedTime().asSeconds();
+        DeltaTimeClock.restart();
 
         processInput();
-        update(deltaTime);
+        update(deltaTime * 10);
         render();
     }
 }
