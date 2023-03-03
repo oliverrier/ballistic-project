@@ -91,7 +91,7 @@ void GameScene::processInput(sf::Event& inputEvent) {
 	IScene::processInput(inputEvent);
 	if (canShoot == true && inputEvent.KeyPressed && inputEvent.key.code == sf::Keyboard::Space) {
 		canShoot = false;
-		std::shared_ptr<Bullet> bullet = GameObjectFactory::create<Bullet>(window_width, shootingAngle);
+		std::shared_ptr<Bullet> bullet = GameObjectFactory::create<Bullet>(shootingAngle, Vec2{ window_width / 2.f, 10.0f });
 		float angleToShoot = bullet->angle * PI / 180;
 
 		bullet->m_body->rb->SetFixedRotation(true);

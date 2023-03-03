@@ -9,10 +9,11 @@
 struct Bullet : public GameObject<GCBullet, PCBullet, ICBullet>
 {
 public:
-	Bullet(float window_width, float angle);
+	Bullet(float angle, Vec2 position, bool isFragmentation = false);
 	~Bullet() = default;
 
 	std::shared_ptr<CircleEntity> m_body;
 	sf::CircleShape m_circle;
 	float angle;
+	bool is_fragmentation;
 };
