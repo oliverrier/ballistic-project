@@ -5,6 +5,7 @@
 
 #include <chrono>
 #include <iostream> 
+#include <cmath>
 
 #include "physicsEngine/dynamics/World.h"
 #include "SFML/Graphics.hpp"
@@ -91,14 +92,19 @@ void GameScene::processInput(sf::Event& inputEvent) {
 	IScene::processInput(inputEvent);
 	if (canShoot == true && inputEvent.KeyPressed && inputEvent.key.code == sf::Keyboard::Space) {
 		canShoot = false;
-		std::shared_ptr<Bullet> bullet = GameObjectFactory::create<Bullet>(shootingAngle, Vec2{ window_width / 2.f, 10.0f });
+
+
+		std::shared_ptr<Bullet> bullet = GameObjectFactory::create<Bullet>(shootingAngle, Vec2{ m_currentCharacter->m_body->rb->GetPosition().x, m_currentCharacter->m_body->rb->GetPosition().y });
 		float angleToShoot = bullet->angle * PI / 180;
 
+		float point_x = m_currentCharacter->m_body->rb->GetPosition().x + (m_currentCharacter->m_body->size.x + bullet->m_body->radius) * std::cos(angleToShoot);
+		float point_y = m_currentCharacter->m_body->rb->GetPosition().y + (m_currentCharacter->m_body->size.x + bullet->m_body->radius) * std::sin(angleToShoot);
+		
+		bullet->m_body->rb->SetTransform(Vec2(point_x, point_y), 0.f);
 		bullet->m_body->rb->SetFixedRotation(true);
 		bullet->m_body->rb->SetGravityScale(1.f);
 		bullet->m_body->rb->SetAngularVelocity(0.f);
-		bullet->m_body->rb->SetTransform(Vec2(100.f, 600.f), 0.f);
-		bullet->m_body->rb->SetLinearVelocity(Vec2(std::cosf(angleToShoot) * 600, std::sinf(angleToShoot) * 600));
+		bullet->m_body->rb->SetLinearVelocity(Vec2(std::cosf(angleToShoot) * 6000, std::sinf(angleToShoot) * 6000));
 		addGameObjects(bullet);
 	}
 
