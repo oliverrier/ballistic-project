@@ -3,7 +3,7 @@
 struct HudArrow : public sf::RectangleShape {
 
 public:
-	HudArrow(const FVector2& position, const FVector2& size, float* angle, const sf::Color& color = sf::Color::Transparent) : m_angle(angle)
+	HudArrow(const FVector2& position, const FVector2& size, float angle, const sf::Color& color = sf::Color::Transparent) : m_angle(angle)
 	{
 		m_initialPosition = position;
 
@@ -34,7 +34,7 @@ public:
 
 	void setPosition(const FVector2 position) {
 		sf::RectangleShape::setPosition(position.x, position.y);
-		setSpriteRotation(*m_angle);
+		setSpriteRotation(m_angle);
 		if (m_sprite.getTexture() != nullptr) {
 			m_sprite.setPosition(position.x, position.y);
 		}
@@ -56,10 +56,11 @@ public:
 		return m_initialPosition;
 	}
 
+	float m_angle;
+
 private:
 
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;
-	float* m_angle;
 	FVector2 m_initialPosition;
 };

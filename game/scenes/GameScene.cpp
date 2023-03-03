@@ -37,12 +37,12 @@ GameScene::GameScene() {
 	hudElements.push_back(aimInfo);
 	shootInfo = UiFactory::create < HudElement<std::string>>(FVector2(1300.f, 980.f), FVector2(500.f, 50.f), sf::Color(19, 48, 54, 255), "Space  Tirer");
 	hudElements.push_back(shootInfo);
-	windArrow = UiFactory::create < HudArrow>(FVector2(420.f, 200.f), FVector2(150.f, 50.f), &windAngle);
+	//windArrow = UiFactory::create < HudArrow>(FVector2(420.f, 200.f), FVector2(150.f, 50.f), windAngle);
 	timer = UiFactory::create < HudElement<std::string>>(FVector2(window_width / 2.f, 100.f), FVector2(50.f, 50.f), sf::Color::Transparent, "50");
 	hudElements.push_back(timer);
 	playerInfo = UiFactory::create < HudElement<std::string>>(FVector2(window_width / 2.f - 65.f, 150.f), FVector2(100.f, 50.f), sf::Color::Transparent, "Player 1");
 	hudElements.push_back(playerInfo);
-	windArrow = UiFactory::create < HudArrow>(FVector2(1800.f, 100.f), FVector2(150.f, 50.f), &windAngle);
+	windArrow = UiFactory::create < HudArrow>(FVector2(1800.f, 100.f), FVector2(150.f, 50.f), windAngle);
 
 	time = 30.f;
 
@@ -124,6 +124,10 @@ void GameScene::update(const float& deltaTime) {
 
 	if (time <= 0.f)
 	{
+		float angle = MapValue((float)rand() / RAND_MAX, 0.f, 1.f, -180.f, 0.f);
+		windArrow->m_angle = angle;
+		windAngle = angle;
+
 		is_player_1_turn = !is_player_1_turn;
 		player_index_to_play = is_player_1_turn ? 0 : 1;
 

@@ -72,6 +72,7 @@ private:
 
 	std::vector < std::shared_ptr<HudElement<std::string>> > hudElements;
 
+public:
 	std::vector<std::shared_ptr<Bullet>> m_fragmentation;
 
 };
