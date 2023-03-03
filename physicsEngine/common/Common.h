@@ -10,7 +10,7 @@
 
 /// You can use this to change the length scale used by your game.
 /// For example for inches you could use 39.4.
-#define lengthUnitsPerMeter 1.0f
+#define lengthUnitsPerMeter 1.f
 
 /// The maximum number of vertices on a convex polygon. You cannot increase
 #define maxPolygonVertices	8

@@ -1,12 +1,9 @@
-#ifndef GAMESCENE_H
-#define GAMESCENE_H
+#pragma once
 
 #include "engine/Scene/Scene.h"
-#include "game/GameObjects/UI/Button.h"
 #include "engine/Ui/Buttons/RectangleButton.h"
 #include "game/Camera.h"
 #include "game/EventManager.h"
-#include "engine/Entity/RectEntity.h"
 #include "engine/Ui/HUD/HudElement.h"
 #include "game/GameObjects/Ground.h"
 #include "game/GameObjects/Bullet.h"
@@ -27,13 +24,14 @@ public:
 	void initObjects();
 	void registerEvents();
 
-public:
 	float shootingAngle;
 
 	float windAngle;
 	float windForce;
 
 	bool canShoot = true;
+	float time;
+	bool is_player_1_turn = true;
 
 private:
 
@@ -55,10 +53,10 @@ private:
 	std::shared_ptr<HudElement<std::string>> moveInfo;
 	std::shared_ptr<HudElement<std::string>> aimInfo;
 	std::shared_ptr<HudElement<std::string>> shootInfo;
+	std::shared_ptr<HudElement<std::string>> timer;
+
 	std::shared_ptr<HudArrow> windArrow;
 	std::vector < std::shared_ptr<HudElement<std::string>> > hudElements;
 
-	
 };
 
-#endif // !GAMESCENE_H

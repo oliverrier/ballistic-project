@@ -12,13 +12,15 @@ void ICCharacter::processInputImplementation(IGameObject& gameObject, sf::Event&
 	Character& character = static_cast<Character&>(gameObject);
 	GameScene& game_scene = static_cast<GameScene&>(scene);
 
-	if (inputEvent.type == sf::Event::KeyPressed && inputEvent.key.code == sf::Keyboard::Q) {
+	
+
+	if (inputEvent.type == sf::Event::KeyPressed && inputEvent.key.code == character.left) {
 		//body->rb->SetAwake(true);
 
 		character.m_body->rb->SetFixedRotation(true);
 		character.m_body->rb->SetLinearVelocity(Vec2{ -20.f , 3.f });
 	}
-	else if (inputEvent.type == sf::Event::KeyPressed && inputEvent.key.code == sf::Keyboard::D) {
+	else if (inputEvent.type == sf::Event::KeyPressed && inputEvent.key.code == character.right) {
 		//body->rb->SetAwake(true);
 
 		character.m_body->rb->SetFixedRotation(true);

@@ -170,11 +170,11 @@ public:
 
 public:
     //static std::vector <HudElement<std::string>> hudVector;
+    sf::Text m_textDisplayed;
 
 private:
 
     std::string m_text;
-    sf::Text m_textDisplayed;
     sf::Font m_font;
 
     sf::Texture m_texture;

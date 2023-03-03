@@ -35,22 +35,22 @@ GameScene::GameScene() {
 	shootInfo = UiFactory::create < HudElement<std::string>>(FVector2(1300.f, 980.f), FVector2(500.f, 50.f), sf::Color(19, 48, 54, 255), "Space  Tirer");
 	hudElements.push_back(shootInfo);
 	windArrow = UiFactory::create < HudArrow>(FVector2(420.f, 200.f), FVector2(150.f, 50.f), &windAngle);
+	timer = UiFactory::create < HudElement<std::string>>(FVector2(window_width / 2.f, 100.f), FVector2(50.f, 50.f), sf::Color::Transparent, "50");
+	hudElements.push_back(timer);
+	time = 30.f;
 
-	
-
-	std::shared_ptr<Character> character = GameObjectFactory::create<Character>(window_height);
+	std::shared_ptr<Character> character = GameObjectFactory::create<Character>(sf::Keyboard::Q, sf::Keyboard::D);
 	addGameObjects(character);
 
 
 	m_world = World::GetWorld();
 
-	Fixture* m_character;
-
 	std::vector<Vec2> vertices;
 	GenerateFloorVertex({ 0.f, 200.f }, { window_width , 200.f }, 10, vertices);
 	m_platform = GameObjectFactory::create<Ground>(vertices, Vec2(0, window_height - 200));
 	addGameObjects(m_platform);
-	
+
+
 	initButtons();
 }
 
@@ -95,19 +95,29 @@ void GameScene::processInput(sf::Event& inputEvent) {
 
 void GameScene::update(const float& deltaTime) {
 
-	float timeStep = 1.0f / 60.0f;
+	time -= deltaTime / 10.f;
+
+	if (time <= 0.f)
+	{
+		is_player_1_turn = !is_player_1_turn;
+		time = 30.f;
+	}
+
+	timer->m_textDisplayed.setString(std::to_string((int)time));
 
 	int velocityIterations = 6;
 	int positionIterations = 2;
 
-	m_world->Step(timeStep, velocityIterations, positionIterations);
+	m_world->Step(deltaTime, velocityIterations, positionIterations);
 
+	/*
 	for (auto element : hudElements)
 	{
 		element->setPosition(element->getInitialPosition());
 	}
 
 	windArrow->setPosition(windArrow->getInitialPosition());
+	*/
 
 	IScene::update(deltaTime);
 }

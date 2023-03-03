@@ -1,5 +1,4 @@
-#ifndef CHARACTER_H
-#define CHARACTER_H
+#pragma once
 
 #include "game/Components/InputComponents/Character/ICCharacter.h"
 #include "game/Components/PhysicsComponents/Character/PCCharacter.h"
@@ -10,7 +9,7 @@
 class Character : public GameObject<ICCharacter, PCCharacter, GCCharacter>, Entity {
 
 public:
-	Character(float window_height);
+	Character(sf::Keyboard::Key left, sf::Keyboard::Key right);
 	~Character() override = default;
 
 	void takeDamage(float damage);
@@ -19,6 +18,8 @@ public:
 
 	std::shared_ptr<RectEntity> m_body;
 	sf::RectangleShape* m_boundingBox;
+	sf::Keyboard::Key left;
+	sf::Keyboard::Key right;
 
 protected:
 
@@ -30,4 +31,3 @@ protected:
 
 };
 
-#endif // !CHARACTER_H

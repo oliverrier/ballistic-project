@@ -1,8 +1,9 @@
 #include "game/GameObjects/Character/Character.h"
-#include "engine/utils/Math/Common.h"
+
+constexpr int window_height = 1080;
 
 
-Character::Character(float window_height)
+Character::Character(sf::Keyboard::Key left, sf::Keyboard::Key right): left(left), right(right)
 {
 	m_body = EntityFactory::create<RectEntity>(Vec2{ 20.f,  20.f }, Vec2{ 50.f, window_height - 500 }, BodyType::dynamicBody);
 	m_boundingBox = new sf::RectangleShape({ m_body->size.x, m_body->size.y });
