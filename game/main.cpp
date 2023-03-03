@@ -13,7 +13,7 @@ int main()
     game->addScenes(new StartScene());
     game->addScenes(new GameScene());
 
-    game->setCurrentScene(ScenesEnum::GAME_SCENE);
+    game->setCurrentScene(ScenesEnum::START_SCENE);
 
     game->run(sf::VideoMode(1920, 1080), "ballistic-project", sf::Style::Resize);
 

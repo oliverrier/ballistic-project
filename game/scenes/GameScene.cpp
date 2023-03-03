@@ -44,6 +44,9 @@ GameScene::GameScene() {
 	hudElements.push_back(playerInfo);
 	windArrow = UiFactory::create < HudArrow>(FVector2(1800.f, 100.f), FVector2(150.f, 50.f), windAngle);
 
+	WinInfo = UiFactory::create < HudElement<std::string>>(FVector2(window_width / 2.f - 120, window_height / 2.f - 200), FVector2(100.f, 50.f), sf::Color::Transparent, "");
+	hudElements.push_back(WinInfo);
+
 	time = 30.f;
 
 	const Vec2 character_1_start_pos = { 150.f, window_height - 500 };
@@ -72,7 +75,7 @@ GameScene::GameScene() {
 	addGameObjects(m_wall2);
 
 	m_currentCharacter = player1;
-
+	displaymenu = false;
 	initButtons();
 }
 
@@ -80,12 +83,14 @@ void goToMenu() {
 	Game::GetInstance()->setCurrentScene(ScenesEnum::START_SCENE);
 }
 
+
+
 void GameScene::initButtons() {
-	/*startButton = UiFactory::create<RectangleButton>(FVector2(885.f, 480.f), FVector2(150.f, 50.f), sf::Color(92, 50, 18, 255), "Retour au menu");
+	startButton = UiFactory::create<RectangleButton>(FVector2(885.f, 480.f), FVector2(150.f, 50.f), sf::Color(92, 50, 18, 255), "Menu");
 	startButton->setOnClick(goToMenu);
 
-	exitButton = UiFactory::create<RectangleButton>(FVector2(885.f, 640.f), FVector2(150.f, 50.f), sf::Color(92, 50, 18, 255), "TEST");
-	exitButton->setOnClick([&]() {m_window->close(); });*/
+	exitButton = UiFactory::create<RectangleButton>(FVector2(885.f, 640.f), FVector2(150.f, 50.f), sf::Color(92, 50, 18, 255), "Leave");
+	exitButton->setOnClick([&]() {m_window->close(); });
 }
 
 void GameScene::NextPlayer()
@@ -108,7 +113,7 @@ void GameScene::NextPlayer()
 	{
 		m_currentCharacter = player2;
 	}
-	canShoot = true;	
+	canShoot = true;
 }
 
 void GameScene::processInput(sf::Event& inputEvent) {
@@ -142,6 +147,13 @@ void GameScene::processInput(sf::Event& inputEvent) {
 	else if (inputEvent.key.code == sf::Keyboard::S)
 	{
 		shootingAngle += 1;
+	}
+
+	if (displaymenu && inputEvent.type == sf::Event::MouseButtonReleased && inputEvent.mouseButton.button == 0) {
+
+		FVector2 mousePosition = FVector2(sf::Mouse::getPosition().x, sf::Mouse::getPosition().y);
+		startButton->handleClick(mousePosition);
+		exitButton->handleClick(mousePosition);
 	}
 
 	IScene::processInput(inputEvent);
@@ -184,6 +196,20 @@ void GameScene::update(const float& deltaTime) {
 
 	lifeBar2->correctSize();
 	lifeBar2->correctPosition();
+	
+	if (player1->getHealth() <= 0) {
+		displaymenu = true;
+		WinInfo->m_textDisplayed.setString("Player 2 Wins");
+	} else if (player2->getHealth() <= 0) {
+		displaymenu = true;
+		WinInfo->m_textDisplayed.setString("Player 1 Wins");
+	}
+
+	if (displaymenu)
+	{
+		startButton->setPosition(startButton->getInitialPosition());
+		exitButton->setPosition(exitButton->getInitialPosition());
+	}
 
 	IScene::update(deltaTime);
 }
@@ -204,4 +230,12 @@ void GameScene::render() {
 	m_window->draw(*windArrow);
 	m_window->draw(*lifeBar1);
 	m_window->draw(*lifeBar2);
+
+	if (displaymenu)
+	{
+		startButton->draw(*m_window, sf::RenderStates::Default);
+		exitButton->draw(*m_window, sf::RenderStates::Default);
+	}
+
+
 }

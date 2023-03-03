@@ -37,6 +37,7 @@ public:
 	float time;
 	bool is_player_1_turn = true;
 	int player_index_to_play = 0;
+	bool displaymenu = false;
 
 private:
 
@@ -64,6 +65,7 @@ private:
 	std::shared_ptr<HudElement<std::string>> shootInfo;
 	std::shared_ptr<HudElement<std::string>> timer;
 	std::shared_ptr<HudElement<std::string>> playerInfo;
+	std::shared_ptr<HudElement<std::string>> WinInfo;
 
 	std::shared_ptr<HudArrow> windArrow;
 	std::shared_ptr<HudEntityFixed<float>> lifeBar1;
