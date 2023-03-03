@@ -31,7 +31,7 @@ GameScene::GameScene() {
 
 	pannel = UiFactory::create < HudElement<std::string>>(FVector2(0.f, 780.f), FVector2(1920.f, 300.f), sf::Color(19, 48, 54, 255), "", "Assets/WoodenTexture.png");
 	hudElements.push_back(pannel);
-	moveInfo = UiFactory::create < HudElement<std::string>>(FVector2(200.f, 980.f), FVector2(500.f, 50.f), sf::Color(19, 48, 54, 255), "Q,D	Deplacements");
+	moveInfo = UiFactory::create < HudElement<std::string>>(FVector2(50.f, 980.f), FVector2(650.f, 50.f), sf::Color(19, 48, 54, 255), "Q,D,Entrer Deplacements J1\n<,>,Entrer Deplacemennt J2");
 	hudElements.push_back(moveInfo);
 	aimInfo = UiFactory::create < HudElement<std::string>>(FVector2(750.f, 980.f), FVector2(500.f, 50.f), sf::Color(19, 48, 54, 255), "Z,S	Viser");
 	hudElements.push_back(aimInfo);
