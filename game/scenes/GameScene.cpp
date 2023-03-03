@@ -41,6 +41,7 @@ GameScene::GameScene() {
 	hudElements.push_back(timer);
 	playerInfo = UiFactory::create < HudElement<std::string>>(FVector2(window_width / 2.f - 65.f, 150.f), FVector2(100.f, 50.f), sf::Color::Transparent, "Player 1");
 	hudElements.push_back(playerInfo);
+	windArrow = UiFactory::create < HudArrow>(FVector2(1800.f, 100.f), FVector2(150.f, 50.f), &windAngle);
 
 	time = 30.f;
 
@@ -51,6 +52,9 @@ GameScene::GameScene() {
 
 	Vec2 character_2_start_pos = { window_width - 150, window_height - 500 };
 	player2 = GameObjectFactory::create<Character>(character_2_start_pos, sf::Keyboard::Left, sf::Keyboard::Right, 1);
+
+	lifeBar1 = UiFactory::create < HudEntityFixed < float>>(FVector2(-50.f, 50.f), FVector2(100.f, 10.f), sf::Color(191, 109, 33, 255), player1);
+	lifeBar2 = UiFactory::create < HudEntityFixed < float>>(FVector2(-50.f, 50.f), FVector2(100.f, 10.f), sf::Color(191, 109, 33, 255), player2);
 
 	addGameObjects(player2);
 
@@ -85,9 +89,7 @@ void GameScene::initButtons() {
 
 void GameScene::processInput(sf::Event& inputEvent) {
 	IScene::processInput(inputEvent);
-
 	if (canShoot == true && inputEvent.KeyPressed && inputEvent.key.code == sf::Keyboard::Space) {
-
 		canShoot = false;
 		std::shared_ptr<Bullet> bullet = GameObjectFactory::create<Bullet>(window_width, shootingAngle);
 		float angleToShoot = bullet->angle * PI / 180;
@@ -144,14 +146,20 @@ void GameScene::update(const float& deltaTime) {
 	{
 		element->setPosition(element->getInitialPosition());
 	}
+	*/
 
 	windArrow->setPosition(windArrow->getInitialPosition());
-	*/
 
 	auto currentCharacterContactList = m_currentCharacter->m_body->rb->GetContactList();
 	if (!m_currentCharacter->m_startJumping && currentCharacterContactList != nullptr && currentCharacterContactList->contact->GetManifold()->pointCount > 0) {
 		m_currentCharacter->m_isJumping = false;
 	}
+
+	lifeBar1->correctSize();
+	lifeBar1->correctPosition();
+
+	lifeBar2->correctSize();
+	lifeBar2->correctPosition();
 
 	IScene::update(deltaTime);
 }
@@ -161,14 +169,15 @@ void GameScene::render() {
 	
 	//startButton->draw(*m_window, sf::RenderStates::Default);
 	//exitButton->draw(*m_window, sf::RenderStates::Default);
-	
-	IScene::render();
 
 	for (auto element : hudElements)
 	{
 		m_window->draw(*element);
 	}
+	
+	IScene::render();
 
 	m_window->draw(*windArrow);
-
+	m_window->draw(*lifeBar1);
+	m_window->draw(*lifeBar2);
 }

@@ -10,6 +10,7 @@
 #include "game/GameObjects/Character/Character.h"
 #include "engine/Ui/HUD/HudArrow.h"
 #include "game/GameObjects/Character/Character.h"
+#include "engine/Ui/HUD/HudEntityFixed.h"
 
 
 class GameScene : public IScene
@@ -64,6 +65,11 @@ private:
 	std::shared_ptr<HudElement<std::string>> playerInfo;
 
 	std::shared_ptr<HudArrow> windArrow;
+	std::shared_ptr<HudEntityFixed<float>> lifeBar1;
+	std::shared_ptr<HudEntityFixed<float>> lifeBar2;
+
+	std::shared_ptr<Character> character;
+
 	std::vector < std::shared_ptr<HudElement<std::string>> > hudElements;
 
 };

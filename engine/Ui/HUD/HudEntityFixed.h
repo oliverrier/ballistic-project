@@ -1,3 +1,5 @@
+#pragma once
+
 #include <SFML/Graphics.hpp>
 #include <functional>
 #include <vector>
@@ -5,20 +7,20 @@
 #include <iostream>
 #include <string>
 
+#include "game/GameObjects/Character/Character.h"
+
 template<typename T>
 struct HudEntityFixed : public sf::RectangleShape {
 
 public:
-    HudEntityFixed(const FVector2& relativePosition, const FVector2& size, const sf::Color& color) //: m_entity_rb(entity_rb)
+    HudEntityFixed(const FVector2& relativePosition, const FVector2& size, const sf::Color& color, std::shared_ptr<Character> character) : m_character(character), m_initialeSize(size)
     {
         m_initialPosition = relativePosition;
         m_relativePosition = relativePosition;
 
-        //setPosition(relativePosition);
         setSize(sf::Vector2f(size.x, size.y));
         setFillColor(color);
 
-        hudVector.push_back(*this);
     }
 
     ~HudEntityFixed() = default;
@@ -31,9 +33,13 @@ public:
         m_relativePosition = position;
     }
 
-    void correctPosition() {
-        //sf::RectangleShape::setPosition(m_entity_rb->position.x + m_relativePosition.x, m_entity_rb->position.y - m_relativePosition.y);
+    void correctSize() {
+        //std::cout << m_initialeSize.x * (m_character->getHealth() / m_character->getHealth()) << std::endl;
+        sf::RectangleShape::setSize(sf::Vector2f(m_initialeSize.x * (m_character->getHealth() / m_character->getMaxHealth()), m_initialeSize.y));
+    }
 
+    void correctPosition() {
+        sf::RectangleShape::setPosition(m_character->m_body->rb->GetPosition().x + m_relativePosition.x, m_character->m_body->rb->GetPosition().y - m_relativePosition.y);
     }
 
     FVector2 getRelativePosition() {
@@ -46,16 +52,11 @@ public:
     }
 
 public:
-    static std::vector<HudEntityFixed<T>> hudVector;
-    //std::shared_ptr<RigidBody> m_entity_rb;
 
+    std::shared_ptr<Character> m_character;
 
 private:
-
+    FVector2 m_initialeSize;
     FVector2 m_relativePosition;
     FVector2 m_initialPosition;
 };
-
-//vector initialization
-template<typename T>
-std::vector<HudEntityFixed<T>> HudEntityFixed<T>::hudVector;

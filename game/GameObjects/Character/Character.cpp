@@ -8,6 +8,9 @@ Character::Character(Vec2 pos, sf::Keyboard::Key left, sf::Keyboard::Key right, 
 	m_body = EntityFactory::create<RectEntity>(Vec2{ 40.f,  40.f }, pos, BodyType::dynamicBody);
 	m_boundingBox = new sf::RectangleShape({ m_body->size.x, m_body->size.y });
 	m_startJumping = false;
+	m_health = 100.f;
+	m_maxHealth = 100.f;
+
 }
 
 const float Character::getHealth()
