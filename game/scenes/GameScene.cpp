@@ -108,6 +108,7 @@ void GameScene::NextPlayer()
 	{
 		m_currentCharacter = player2;
 	}
+	canShoot = true;	
 }
 
 void GameScene::processInput(sf::Event& inputEvent) {
