@@ -21,6 +21,7 @@ public:
 	sf::Keyboard::Key left;
 	sf::Keyboard::Key right;
 	bool m_isJumping;
+	bool m_startJumping;
 	int index;
 
 protected:

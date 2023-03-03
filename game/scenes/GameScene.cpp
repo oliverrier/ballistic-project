@@ -60,6 +60,8 @@ GameScene::GameScene() {
 	addGameObjects(m_platform);
 
 
+	m_currentCharacter = player1;
+
 	initButtons();
 }
 
@@ -116,12 +118,10 @@ void GameScene::update(const float& deltaTime) {
 
 		if (player_index_to_play == 0)
 		{
-			player1->m_body->rb->SetType(dynamicBody);
-			player2->m_body->rb->SetType(staticBody);
+			m_currentCharacter = player1;
 		} else
 		{
-			player2->m_body->rb->SetType(dynamicBody);
-			player1->m_body->rb->SetType(staticBody);
+			m_currentCharacter = player2;
 		}
 
 	}
@@ -143,7 +143,7 @@ void GameScene::update(const float& deltaTime) {
 	*/
 
 	auto currentCharacterContactList = m_currentCharacter->m_body->rb->GetContactList();
-	if (currentCharacterContactList != nullptr && currentCharacterContactList->contact->GetManifold()->pointCount > 0) {
+	if (!m_currentCharacter->m_startJumping && currentCharacterContactList != nullptr && currentCharacterContactList->contact->GetManifold()->pointCount > 0) {
 		m_currentCharacter->m_isJumping = false;
 	}
 
