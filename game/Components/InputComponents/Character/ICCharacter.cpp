@@ -12,7 +12,7 @@ void ICCharacter::processInputImplementation(IGameObject& gameObject, sf::Event&
 	Character& character = static_cast<Character&>(gameObject);
 	GameScene& game_scene = static_cast<GameScene&>(scene);
 
-	
+	if (character.index != game_scene.player_index_to_play) return;
 
 	if (inputEvent.type == sf::Event::KeyPressed && inputEvent.key.code == character.left) {
 		//body->rb->SetAwake(true);

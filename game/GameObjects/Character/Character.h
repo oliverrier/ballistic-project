@@ -9,7 +9,7 @@
 class Character : public GameObject<ICCharacter, PCCharacter, GCCharacter>, Entity {
 
 public:
-	Character(sf::Keyboard::Key left, sf::Keyboard::Key right);
+	Character(Vec2 pos, sf::Keyboard::Key left, sf::Keyboard::Key right, int index);
 	~Character() override = default;
 
 	void takeDamage(float damage);
@@ -21,6 +21,7 @@ public:
 	sf::Keyboard::Key left;
 	sf::Keyboard::Key right;
 	bool m_isJumping;
+	int index;
 
 protected:
 
