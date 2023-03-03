@@ -18,16 +18,23 @@ void ICCharacter::processInputImplementation(IGameObject& gameObject, sf::Event&
 		//body->rb->SetAwake(true);
 
 		character.m_body->rb->SetFixedRotation(true);
-		character.m_body->rb->SetLinearVelocity(Vec2{ -20.f , 3.f });
+		character.m_body->rb->SetLinearVelocity(Vec2{ -100.f , 0.f});
 	}
 	else if (inputEvent.type == sf::Event::KeyPressed && inputEvent.key.code == character.right) {
 		//body->rb->SetAwake(true);
 
 		character.m_body->rb->SetFixedRotation(true);
-		character.m_body->rb->SetLinearVelocity(Vec2{ 20.f , 3.f });
+		character.m_body->rb->SetLinearVelocity(Vec2{ 100.f , 0.f });
 	}
 	if (inputEvent.type == sf::Event::KeyReleased) 
 	{
 		character.m_body->rb->SetLinearVelocity(Vec2{ 0.f , 0.f });
+	}
+	if (!character.m_isJumping && inputEvent.type == sf::Event::KeyPressed && inputEvent.key.code == sf::Keyboard::Enter) {
+		//body->rb->SetAwake(true);
+		character.m_isJumping = true;
+		character.m_body->rb->SetFixedRotation(true);
+		character.m_body->rb->SetLinearVelocity(Vec2{ 0.f , -2000.f });
+
 	}
 }

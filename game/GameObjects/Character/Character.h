@@ -20,6 +20,7 @@ public:
 	sf::RectangleShape* m_boundingBox;
 	sf::Keyboard::Key left;
 	sf::Keyboard::Key right;
+	bool m_isJumping;
 	int index;
 
 protected:

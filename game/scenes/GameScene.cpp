@@ -52,8 +52,6 @@ GameScene::GameScene() {
 
 	addGameObjects(player2);
 
-
-
 	m_world = World::GetWorld();
 
 	std::vector<Vec2> vertices;
@@ -143,6 +141,11 @@ void GameScene::update(const float& deltaTime) {
 
 	windArrow->setPosition(windArrow->getInitialPosition());
 	*/
+
+	auto currentCharacterContactList = m_currentCharacter->m_body->rb->GetContactList();
+	if (currentCharacterContactList != nullptr && currentCharacterContactList->contact->GetManifold()->pointCount > 0) {
+		m_currentCharacter->m_isJumping = false;
+	}
 
 	IScene::update(deltaTime);
 }
