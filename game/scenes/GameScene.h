@@ -51,10 +51,10 @@ private:
 		
 	std::shared_ptr<Ground> m_platform;
 	std::shared_ptr<Character> m_currentCharacter;
-
+public:
 	std::shared_ptr<Character> player1;
 	std::shared_ptr<Character> player2;
-
+private:
 	std::shared_ptr<World> m_world;
 
 	// Interface elements

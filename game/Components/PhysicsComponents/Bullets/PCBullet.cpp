@@ -22,9 +22,12 @@ void PCBullet::updateImplementation(const float& deltaTime, IGameObject& gameObj
 	if (contactList != nullptr && contactList->contact->GetManifold()->pointCount > 0) {
 	  	auto bulletPosition = bullet.m_body->rb->GetPosition();
 		bool isFrag = bullet.is_fragmentation;
+
+		ApplyDamage(game_scene, bulletPosition, isFrag);
+
 		auto world = World::GetWorld();
 		world->DestroyBody(bullet.m_body->rb);
-		Game::GetInstance()->GetCurrentScene()->RemoveGameObject(&bullet);
+		game_scene.RemoveGameObject(&bullet);
 
 		if (!isFrag) {
 			for (int i = 0; i < 4; ++i)
@@ -50,4 +53,28 @@ void PCBullet::updateImplementation(const float& deltaTime, IGameObject& gameObj
 
 
 	bullet.m_circle.setPosition({ bullet.m_body->rb->GetPosition().x, bullet.m_body->rb->GetPosition().y });
+}
+
+void PCBullet::ApplyDamage(IScene& scene, Vec2 bulletPos, bool isFrag)
+{
+	GameScene& game_scene = static_cast<GameScene&>(scene);
+
+	// get distance with players;
+	auto p1_pos = game_scene.player1->m_body->rb->GetPosition();
+	auto dist_1 = FVector2::Distance({ bulletPos.x, bulletPos.y }, { p1_pos.x, p1_pos.y });
+
+	auto min_damage = isFrag ? 5.f : 25.f;
+	auto max_damage = isFrag ? 50.f : 10.f;
+	auto dist = isFrag ? 50.f : 100.f;
+	if (dist_1 <= dist) {
+		auto damage = MapValue(dist_1, 0.f, 100.f, max_damage, min_damage);
+		game_scene.player1->takeDamage(damage);
+	}
+
+	auto p2_pos = game_scene.player2->m_body->rb->GetPosition();
+	auto dist_2 = FVector2::Distance({ bulletPos.x, bulletPos.y }, { p2_pos.x, p2_pos.y });
+	if (dist_2 <= dist) {
+		auto damage = MapValue(dist_2, 0.f, 100.f, max_damage, min_damage);
+		game_scene.player2->takeDamage(damage);
+	}
 }

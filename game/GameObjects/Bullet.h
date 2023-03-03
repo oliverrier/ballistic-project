@@ -6,9 +6,8 @@
 #include "game/Components/GraphicsComponents/Bullets/GCBullet.h"
 #include "engine/Entity/CircleEntity.h"
 
-struct Bullet : public GameObject<GCBullet, PCBullet, ICBullet>
+struct Bullet : GameObject<GCBullet, PCBullet, ICBullet>
 {
-public:
 	Bullet(float angle, Vec2 position, bool isFragmentation = false);
 	~Bullet() = default;
 
