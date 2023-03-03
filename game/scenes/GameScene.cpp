@@ -88,8 +88,35 @@ void GameScene::initButtons() {
 	exitButton->setOnClick([&]() {m_window->close(); });*/
 }
 
+void GameScene::NextPlayer()
+{
+	float angle = MapValue((float)rand() / RAND_MAX, 0.f, 1.f, -180.f, 0.f);
+	windArrow->m_angle = angle;
+	windAngle = angle;
+
+	is_player_1_turn = !is_player_1_turn;
+	player_index_to_play = is_player_1_turn ? 0 : 1;
+
+	playerInfo->m_textDisplayed.setString(is_player_1_turn ? "Player 1" : "Player 2");
+	time = 30.f;
+
+	if (player_index_to_play == 0)
+	{
+		m_currentCharacter = player1;
+	}
+	else
+	{
+		m_currentCharacter = player2;
+	}
+}
+
 void GameScene::processInput(sf::Event& inputEvent) {
-	IScene::processInput(inputEvent);
+
+	if (inputEvent.KeyPressed && inputEvent.key.code == sf::Keyboard::N)
+	{
+		time = 0.5f;
+	}
+
 	if (canShoot == true && inputEvent.KeyPressed && inputEvent.key.code == sf::Keyboard::Space) {
 		canShoot = false;
 
@@ -116,6 +143,9 @@ void GameScene::processInput(sf::Event& inputEvent) {
 		shootingAngle += 1;
 	}
 
+	IScene::processInput(inputEvent);
+
+
 }
 
 void GameScene::update(const float& deltaTime) {
@@ -124,24 +154,7 @@ void GameScene::update(const float& deltaTime) {
 
 	if (time <= 0.f)
 	{
-		float angle = MapValue((float)rand() / RAND_MAX, 0.f, 1.f, -180.f, 0.f);
-		windArrow->m_angle = angle;
-		windAngle = angle;
-
-		is_player_1_turn = !is_player_1_turn;
-		player_index_to_play = is_player_1_turn ? 0 : 1;
-
-		playerInfo->m_textDisplayed.setString(is_player_1_turn ? "Player 1" : "Player 2");
-		time = 30.f;
-
-		if (player_index_to_play == 0)
-		{			 
-			m_currentCharacter = player1;
-		} else
-		{
-			m_currentCharacter = player2;
-		}
-
+		NextPlayer();
 	}
 
 	timer->m_textDisplayed.setString(std::to_string((int)time));

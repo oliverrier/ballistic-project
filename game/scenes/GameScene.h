@@ -24,6 +24,7 @@ public:
 	void render() override;
 
 	void initButtons();
+	void NextPlayer();
 	void initObjects();
 	void registerEvents();
 
