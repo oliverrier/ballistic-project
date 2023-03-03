@@ -19,12 +19,16 @@ void ICCharacter::processInputImplementation(IGameObject& gameObject, sf::Event&
 
 		character.m_body->rb->SetFixedRotation(true);
 		character.m_body->rb->SetLinearVelocity(Vec2{ -10.f , -1.f});
+		character.m_body->rb->SetGravityScale(3.f);
+
 	}
 	else if (inputEvent.type == sf::Event::KeyPressed && inputEvent.key.code == character.right) {
 		//body->rb->SetAwake(true);
 
 		character.m_body->rb->SetFixedRotation(true);
 		character.m_body->rb->SetLinearVelocity(Vec2{ 10.f , -1.f });
+		character.m_body->rb->SetGravityScale(3.f);
+
 	}
 	if (inputEvent.type == sf::Event::KeyReleased) 
 	{
@@ -40,6 +44,7 @@ void ICCharacter::processInputImplementation(IGameObject& gameObject, sf::Event&
 		character.m_startJumping = true;
 		character.m_body->rb->SetFixedRotation(true);
 		character.m_body->rb->SetLinearVelocity(Vec2{ 0.f , -200.f });
+		character.m_body->rb->SetGravityScale(.5f);
 
 	}
 }
