@@ -37,10 +37,21 @@ GameScene::GameScene() {
 	windArrow = UiFactory::create < HudArrow>(FVector2(420.f, 200.f), FVector2(150.f, 50.f), &windAngle);
 	timer = UiFactory::create < HudElement<std::string>>(FVector2(window_width / 2.f, 100.f), FVector2(50.f, 50.f), sf::Color::Transparent, "50");
 	hudElements.push_back(timer);
+	playerInfo = UiFactory::create < HudElement<std::string>>(FVector2(window_width / 2.f - 65.f, 150.f), FVector2(100.f, 50.f), sf::Color::Transparent, "Player 1");
+	hudElements.push_back(playerInfo);
+
 	time = 30.f;
 
-	std::shared_ptr<Character> character = GameObjectFactory::create<Character>(sf::Keyboard::Q, sf::Keyboard::D);
-	addGameObjects(character);
+	const Vec2 character_1_start_pos = { 150.f, window_height - 500 };
+	player1 = GameObjectFactory::create<Character>(character_1_start_pos, sf::Keyboard::Q, sf::Keyboard::D, 0);
+
+	addGameObjects(player1);
+
+	Vec2 character_2_start_pos = { window_width - 150, window_height - 500 };
+	player2 = GameObjectFactory::create<Character>(character_2_start_pos, sf::Keyboard::Left, sf::Keyboard::Right, 1);
+
+	addGameObjects(player2);
+
 
 
 	m_world = World::GetWorld();
@@ -100,7 +111,21 @@ void GameScene::update(const float& deltaTime) {
 	if (time <= 0.f)
 	{
 		is_player_1_turn = !is_player_1_turn;
+		player_index_to_play = is_player_1_turn ? 0 : 1;
+
+		playerInfo->m_textDisplayed.setString(is_player_1_turn ? "Player 1" : "Player 2");
 		time = 30.f;
+
+		if (player_index_to_play == 0)
+		{
+			player1->m_body->rb->SetType(dynamicBody);
+			player2->m_body->rb->SetType(staticBody);
+		} else
+		{
+			player2->m_body->rb->SetType(dynamicBody);
+			player1->m_body->rb->SetType(staticBody);
+		}
+
 	}
 
 	timer->m_textDisplayed.setString(std::to_string((int)time));

@@ -8,6 +8,7 @@
 #include "game/GameObjects/Ground.h"
 #include "game/GameObjects/Bullet.h"
 #include "engine/Ui/HUD/HudArrow.h"
+#include "game/GameObjects/Character/Character.h"
 
 
 class GameScene : public IScene
@@ -32,6 +33,7 @@ public:
 	bool canShoot = true;
 	float time;
 	bool is_player_1_turn = true;
+	int player_index_to_play = 0;
 
 private:
 
@@ -46,6 +48,9 @@ private:
 		
 	std::shared_ptr<Ground> m_platform;
 
+	std::shared_ptr<Character> player1;
+	std::shared_ptr<Character> player2;
+
 	std::shared_ptr<World> m_world;
 
 	// Interface elements
@@ -54,6 +59,7 @@ private:
 	std::shared_ptr<HudElement<std::string>> aimInfo;
 	std::shared_ptr<HudElement<std::string>> shootInfo;
 	std::shared_ptr<HudElement<std::string>> timer;
+	std::shared_ptr<HudElement<std::string>> playerInfo;
 
 	std::shared_ptr<HudArrow> windArrow;
 	std::vector < std::shared_ptr<HudElement<std::string>> > hudElements;
