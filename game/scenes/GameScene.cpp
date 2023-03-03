@@ -28,6 +28,7 @@ GameScene::GameScene() {
 	windAngle = -45.f;
 	windForce = 60.f;
 	shootingAngle = -90.f;
+	shootPower = 30.f;
 
 	pannel = UiFactory::create < HudElement<std::string>>(FVector2(0.f, 780.f), FVector2(1920.f, 300.f), sf::Color(19, 48, 54, 255), "", "Assets/WoodenTexture.png");
 	hudElements.push_back(pannel);
@@ -35,13 +36,15 @@ GameScene::GameScene() {
 	hudElements.push_back(moveInfo);
 	aimInfo = UiFactory::create < HudElement<std::string>>(FVector2(750.f, 980.f), FVector2(500.f, 50.f), sf::Color(19, 48, 54, 255), "Z,S	Viser");
 	hudElements.push_back(aimInfo);
+	powerInfo = UiFactory::create < HudElement<std::string>>(FVector2(750.f, 880.f), FVector2(500.f, 50.f), sf::Color(19, 48, 54, 255), "A,R	Puissance");
+	hudElements.push_back(powerInfo);
 	shootInfo = UiFactory::create < HudElement<std::string>>(FVector2(1300.f, 980.f), FVector2(500.f, 50.f), sf::Color(19, 48, 54, 255), "Space  Tirer");
 	hudElements.push_back(shootInfo);
-	//windArrow = UiFactory::create < HudArrow>(FVector2(420.f, 200.f), FVector2(150.f, 50.f), windAngle);
 	timer = UiFactory::create < HudElement<std::string>>(FVector2(window_width / 2.f, 100.f), FVector2(50.f, 50.f), sf::Color::Transparent, "50");
 	hudElements.push_back(timer);
 	playerInfo = UiFactory::create < HudElement<std::string>>(FVector2(window_width / 2.f - 65.f, 150.f), FVector2(100.f, 50.f), sf::Color::Transparent, "Player 1");
 	hudElements.push_back(playerInfo);
+
 	windArrow = UiFactory::create < HudArrow>(FVector2(1800.f, 100.f), FVector2(150.f, 50.f), windAngle);
 
 	WinInfo = UiFactory::create < HudElement<std::string>>(FVector2(window_width / 2.f - 120, window_height / 2.f - 200), FVector2(100.f, 50.f), sf::Color::Transparent, "");
@@ -135,9 +138,9 @@ void GameScene::processInput(sf::Event& inputEvent) {
 		
 		bullet->m_body->rb->SetTransform(Vec2(point_x, point_y), 0.f);
 		bullet->m_body->rb->SetFixedRotation(true);
-		bullet->m_body->rb->SetGravityScale(1.f);
+		bullet->m_body->rb->SetGravityScale(0.3f);
 		bullet->m_body->rb->SetAngularVelocity(0.f);
-		bullet->m_body->rb->SetLinearVelocity(Vec2(std::cosf(angleToShoot) * 6000, std::sinf(angleToShoot) * 6000));
+		bullet->m_body->rb->SetLinearVelocity(Vec2(std::cosf(angleToShoot) * shootPower, std::sinf(angleToShoot) * shootPower));
 		addGameObjects(bullet);
 	}
 
@@ -147,6 +150,14 @@ void GameScene::processInput(sf::Event& inputEvent) {
 	else if (inputEvent.key.code == sf::Keyboard::S)
 	{
 		shootingAngle += 1;
+	}
+	else if (inputEvent.key.code == sf::Keyboard::E) {
+		if(shootPower < 100)
+			shootPower += 1;
+	}
+	else if (inputEvent.key.code == sf::Keyboard::A) {
+		if (shootPower > 10)
+			shootPower -= 1;
 	}
 
 	if (displaymenu && inputEvent.type == sf::Event::MouseButtonReleased && inputEvent.mouseButton.button == 0) {
@@ -191,6 +202,8 @@ void GameScene::update(const float& deltaTime) {
 		m_currentCharacter->m_isJumping = false;
 	}
 
+
+
 	lifeBar1->correctSize();
 	lifeBar1->correctPosition();
 
@@ -227,6 +240,7 @@ void GameScene::render() {
 	
 	IScene::render();
 
+
 	m_window->draw(*windArrow);
 	m_window->draw(*lifeBar1);
 	m_window->draw(*lifeBar2);
@@ -238,4 +252,17 @@ void GameScene::render() {
 	}
 
 
+
+	float angleToShoot = shootingAngle * PI / 180;
+
+	float point_x = m_currentCharacter->m_body->rb->GetPosition().x + (300 * std::cos(angleToShoot));
+	float point_y = m_currentCharacter->m_body->rb->GetPosition().y + (300 * std::sin(angleToShoot));
+
+	sf::Vertex aimingLine[2] = {
+
+		sf::Vertex(sf::Vector2f(m_currentCharacter->m_body->rb->GetPosition().x, m_currentCharacter->m_body->rb->GetPosition().y)),
+		sf::Vertex(sf::Vector2f(point_x, point_y)),
+	};
+
+	m_window->draw(aimingLine, 2, sf::LineStrip);
 }

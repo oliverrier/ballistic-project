@@ -25,7 +25,7 @@ private:
 
 		FixtureDef fd;
 		fd.shape = &shape;
-		fd.density = 1.0f;
+		fd.density = 0.5f;
 		fd.friction = 1.0f;
 		fd.restitution = 0.4f;
 

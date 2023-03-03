@@ -34,7 +34,6 @@ public:
     }
 
     void correctSize() {
-        //std::cout << m_initialeSize.x * (m_character->getHealth() / m_character->getHealth()) << std::endl;
         sf::RectangleShape::setSize(sf::Vector2f(m_initialeSize.x * (m_character->getHealth() / m_character->getMaxHealth()), m_initialeSize.y));
     }
 

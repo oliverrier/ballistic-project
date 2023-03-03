@@ -29,6 +29,7 @@ public:
 	void registerEvents();
 
 	float shootingAngle;
+	float shootPower;
 
 	float windAngle;
 	float windForce;
@@ -66,6 +67,10 @@ private:
 	std::shared_ptr<HudElement<std::string>> timer;
 	std::shared_ptr<HudElement<std::string>> playerInfo;
 	std::shared_ptr<HudElement<std::string>> WinInfo;
+	std::shared_ptr<HudElement<std::string>> powerInfo;
+
+	std::shared_ptr<HudElement<float>> shootPowerUi;
+
 
 	std::shared_ptr<HudArrow> windArrow;
 	std::shared_ptr<HudEntityFixed<float>> lifeBar1;
