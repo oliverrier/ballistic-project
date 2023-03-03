@@ -7,6 +7,7 @@
 #include "engine/Ui/HUD/HudElement.h"
 #include "game/GameObjects/Ground.h"
 #include "game/GameObjects/Bullet.h"
+#include "game/GameObjects/Character/Character.h"
 #include "engine/Ui/HUD/HudArrow.h"
 
 
@@ -45,6 +46,7 @@ private:
 	sf::Sprite* m_backgroundSprite;
 		
 	std::shared_ptr<Ground> m_platform;
+	std::shared_ptr<Character> m_currentCharacter;
 
 	std::shared_ptr<World> m_world;
 

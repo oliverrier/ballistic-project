@@ -39,8 +39,10 @@ GameScene::GameScene() {
 	hudElements.push_back(timer);
 	time = 30.f;
 
-	std::shared_ptr<Character> character = GameObjectFactory::create<Character>(sf::Keyboard::Q, sf::Keyboard::D);
-	addGameObjects(character);
+	
+
+	m_currentCharacter = GameObjectFactory::create<Character>(sf::Keyboard::Q, sf::Keyboard::D);
+	addGameObjects(m_currentCharacter);
 
 
 	m_world = World::GetWorld();
@@ -118,6 +120,11 @@ void GameScene::update(const float& deltaTime) {
 
 	windArrow->setPosition(windArrow->getInitialPosition());
 	*/
+
+	auto currentCharacterContactList = m_currentCharacter->m_body->rb->GetContactList();
+	if (currentCharacterContactList != nullptr && currentCharacterContactList->contact->GetManifold()->pointCount > 0) {
+		m_currentCharacter->m_isJumping = false;
+	}
 
 	IScene::update(deltaTime);
 }
